@@ -1,0 +1,210 @@
+\documentclass[a4paper, twoside, 10pt]{report}
+
+\usepackage{color}
+\usepackage{afterpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[ddmmyyyy]{datetime}
+\renewcommand{\dateseparator}{.}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+
+\titleformat{\chapter}
+	{\normalfont\huge\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\AtEndDocument{\cleardoublepage}
+
+\title{Bachelor thesis booklet}
+\author{Johannes C. Mayer}
+\date{\today}
+
+\newcommand\blankpage{\null\thispagestyle{empty}\addtocounter{page}{-1}\newpage}
+
+\begin{document}
+
+\begin{titlepage}
+\vfill
+\noindent
+{\color{white}{\Huge Shrouded Mirror} \\
+{\Large Application of Neural Networks in interactive environments \\
+Johannes C. Mayer}}
+\vfill
+
+\pagecolor{black}
+\afterpage{\nopagecolor}
+\end{titlepage}
+
+\blankpage
+\pagestyle{plain}
+\pagenumbering{Roman}
+
+\begin{center}
+\begin{spacing}{1.5}
+{\Large
+Bachelor thesis booklet in \\ the studies of GAME DESIGN \\
+\vspace*{\fill}
+The work constitutes a technical design work piece \\
+\vspace*{\fill}
+{\huge Shrouded Mirror} \\
+Application of Neural Networks in interactive environments \\
+\vspace*{\fill}
+\textit{Submitted by} \\
+Johannes C. Mayer, 553087 \\
+\today \\
+\vspace*{\fill}
+\textit{First Examiner:} Prof. Thomas Bremer \\
+\textit{Second Examiner:} Prof. Susanne Brandhorst \\
+\vspace*{\fill}
+Hochschule f\"ur Technik und Wirtschaft Berlin \\
+Fachbereich Gestaltung und Kultur \\
+}
+\end{spacing}
+\end{center}
+
+\newpage
+
+\tableofcontents
+\cleardoublepage
+\newpage
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+Shrouded mirror is an experimental experience, where the player sees the world through the eyes of a neural network. The player can move through the environment where different types of objects are placed. These objects behave differently and emit a unique audio signal, creating a distinctive sound scape.
+
+\section{Expose}
+In my bachelor thesis I want to evaluate how neural networks can be used in an interactive context to visualize (an environments) state. For this three prototypes will be developed. The first two act as preparation for the last one which presents a sample application in an interactive context.
+
+Neural networks have the ability to learn an abstract representations of the data being fed into it. This representation can then be used to generate new output. In this work a network is used, that is trained on data pairs, that consist of an Image and the corresponding coordinates, where the image was taken. {\color{red}TILL HERE REFACTOR STARTED} Combined with a set of scene coordinates to render an image that approximates very accurately what the actual camera would render when placed at the provided coordinates. This means that this technique can be used to create a virtual representation of an environment inside a game engine. 
+
+Interesting possibilities open when integrating a GQN into an interactive environment. One example would be, that the player only sees the output of the GQN while the underlying “real” state of the environment is hidden from him. Now by manipulating the GQN we can influence how accurately its renderings are, in turn influencing what information is available to the player. One way this can be achieved is by deleting or adding new scene images to the representation network to encode into a new world model.
+
+\subsubsection{Workflow}
+The Project will be split up into three phases. Each phase will result in a prototype, that the following phase builds on.
+
+\paragraph{I.  Implementation}
+Determine which library to use. PyTorch, Chainer, Keras, Tensorflow are possible candidates. The first two might be prefered due to their ability to define computation graphs dynamically which would possibly allow the output size of the GQN to scale with screen size. With the selected library, a GQN is implemented into the target environment (most likely Unity).
+
+\paragraph{II. Exploration}
+The implementation of the GQN will now be investigated in regards to its manipulability and  constraintsivenes. The following questions will be answered:
+Is it viable to inject additional parameters into the model, to enable more interesting behaviour?
+What are the time constraints of applying a GQN into an interactive real time environment (training time, rendering time, updating worldmodel)?
+Can a normal in game camera be overlayed with the output of the GQN?
+Can objects be made to switch contexts of being displayed via GQN or camera dynamically?
+Which interesting ways of interaction between player and the way the GQN behaves can be created, given other constraints?
+
+\paragraph{III. Simple Application}
+With the Gathered data on the limitations and possibilities a simple prototype application is conceptualized and developed. It demonstrates one or multiple scenarios in which the GQN can be applied to create or enhance an interactive environment.
+
+\subsubsection{Work piece}
+\subsubsection
+The following items will be produced during the Project:
+\begin{itemize}
+\item{Writing}
+\item{Discussion of the Results form prototype II}
+\item{Reflection on the project}
+\item{Executable and source of prototype III}
+\item{1 - 5 minutes video material, captured from interactions with prototype III}
+\end{itemize}
+
+\chapter{Background}
+
+\section{Calculus}
+\subsection{Univariate}
+\subsection{Multivariate}
+\subsection{Chain rule}
+\subsection{What more?}
+\section{Neural networks}
+\subsection{Multilayer perceptron}
+\subsection{Backpropagation}
+\subsection{GQN Network}
+\cite{gqn}
+
+\chapter{Results}
+\section{Training data generation}
+\section{Model}
+Model in python
+
+\subsection{Structure}
+In this work a network the architecture of GQN differs from the implementation used in the original paper. Here I use multilayer perceptron models for encoder and decoder without random latent variables. This circumvents the necessity of having to use methods like evidence lower bound estimation for optimization.
+
+This however prevents the network from taking into account the inputs given during inference to the same extent as in the original experiments described in the paper. The only meaningful considerations of the inputs of the network were found to be the coloring of the sky, floor and walls (when the latter view have the same color). In the original implementation the network can correctly infer more properties like object position, rotation and texture.
+
+Because interesting use cases where found, that do not depend on this property of the GQN network no more effort was put into recreating the ability of the network to model different scenes.
+
+\subsection{Saving and loading}
+\section{Data Preprocessing}
+\section{Inter process communication}
+UDP sending of player position to python
+
+Motion JPEG over UDP socket 
+
+\section{Rendering}
+In Unity the stream is decoded and rendered using custom Cg shaders. These shaders merges the network output stream with objects in the environment that are tagged to be visible in the combined render.
+
+Cull objects if hidden from camera pos in unity environment
+
+\section{Player interaction}
+\section{Prototypes}
+Walking sim
+Maze
+Invisible Enemies
+
+\chapter{Further work}
+In this section possible further applications based on the found data is discussed.
+
+\section{Other directions with current state}
+\subsection{Multiplayer Game}
+2 Players are task to take observations of an environment that is rendered within the unity engine in a limited time. These observations  are now used as training data for a GQN. After training both player have to fight each other in this environment using the rendered output of the GQN.
+
+\subsection{Merge output of multiple models}
+\subsection{Blending of internal network state}
+Lerp some parameters to network to create effect.
+
+\section{Expand GQN capability}
+GQN hard so not very good implementation. Variational metods, random ratent variables. Therefore only MLP.
+
+\subsection{Generative model for modeling environment}
+\subsection{Implement original GQN}
+\subsection{Implement environment time step prediction}
+\section{Expanded GQN directions}
+\chapter{Resources}
+\section{Software}
+\section{Unity packages}
+\section{Textures}
+
+\bibliographystyle{plain}
+\bibliography{BachelorBooklet}
+
+\listoffigures
+\listoftables
+
+\chapter*{Acknowledgments}
+
+\chapter*{Statement of Authorship}
+I hereby declare that I am the sole author of this bachelor thesis and that I have not used any sources other than those listed in the bibliography- and resources section. I further declare that I have not submitted this thesis at any other institution in order to obtain a degree.
+\begin{spacing}{4}
+\noindent
+(Place, Date)\dotfill \space (Signature)\dotfill
+\end{spacing}
+
+\newpage
+\pagestyle{empty}
+\centering
+\vfill
+\includegraphics[width=0.5\textwidth]{Images/logo_GD_black.jpg}
+\vfill
+\vspace*{-2cm}
+\includegraphics[width=0.5\textwidth]{Images/logo_dehive.jpg}
+\vfill
+\includegraphics[width=0.5\textwidth]{Images/logo_htw.jpg}
+\vfill
+
+\newpage
+\blankpage
+
+\newpage
+\null
+\pagecolor{black}
+
+\end{document}
