@@ -107,7 +107,7 @@ Fachbereich Gestaltung und Kultur \\
 \end{center}
 
 \chapter*{Expos\'e}
-In my bachelor thesis I want to evaluate how neural networks can be used in an interactive context to visualize an environments state. For this three prototypes will be developed. The first two act as preparation for the last one which presents a sample application in an interactive context.
+In my bachelor thesis I want to evaluate how neural networks can be used in an interactive context to visualize an environments state. For this the project is structured into three phases. First create a simple implementation of the algorithms required, then explore possible applications, third develop the most promising application further.
 
 Neural networks have the ability to learn an abstract representations of the data being fed into it. This representation can then be used to generate new output. In this work a network is used, that is trained on data pairs, that consist of an Image and the corresponding coordinates, where the image was taken.  The network can now given a set of scene coordinates render an image that approximates what the actual camera would render when placed at the provided coordinates. This means that this technique can be used to create a second visual representation of an environment inside a game engine. 
 
@@ -153,39 +153,31 @@ Interesting possibilities open when integrating this network into an interactive
 
 
 \chapter{Introduction}
-
+Shrouded mirror is an experimental experience, where the player sees the world through the eyes of a neural network. The player moves through an environment, collects beacons and avoids enemies. Each type of entity emits a unique audio signal, creating a distinctive soundscape.
 \begin{figure}[hbt]
 \centering
  {\caption{Test caption of img}
     \figsource{Own graphic}}
-       %\subcaptionbox{Caption1}
 {\includegraphics[width=0.4\textwidth]{Images/FrontCover.png}}
-        %\figsource{Source1}
-%\subcaptionbox{Caption2}
-%{ \includegraphics[width=0.4\textwidth]{Images/FrontCover.png}}
-%        \figsource{Source2}
 \end{figure}
 
-%\begin{figure}
-%\centering
-%\includegraphics[width=0.4\textwidth]{Images/FrontCover.png}
-%\caption{this is an image hello}
-%\figsource{own graphic}
-%\end{figure}
-Shrouded mirror is an experimental experience, where the player sees the world through the eyes of a neural network. The player can move through the environment where different types of objects are placed. These objects behave differently and emit a unique audio signal, creating a distinctive sound scape.
-
 \section{Motivation}
-Why is this a good idea
+%There are some semi-interactive applications for image processing neural networks, such as style transfer. These applications are limited in the interactions they offer to the user. Often the only interactive part is the selection of the images that are fed into the algorithm. 
+Using the representation of an environment a neural network has learned, to present the state of an environment to the player is still an nearly unexplored avenue. 
+In this work I explore how neural networks can be used to create a unique interactive experiences, by using the output the neural representation of the network produces as the main information stream presented to the player.
 
 \section{Scope}
 what has been done, what pices constitute the work?
-During the bachelor thesis the following things where produced:
+During the bachelor thesis the following things where developed:
 
 \begin{itemize}
 \item{Data generation environment}
 \item{Data processing pipeline}
-\item{Scene rendering neural network model}
-\item{}
+\item{Scene rendering neural network model training pipeline}
+\item{Send network output in Unity}
+\item{Merging of network output with unity rendered objects}
+\item{Several exploratory prototypes}
+\item{One extended Prototype (Maze game)}
 \end{itemize}
 
 
@@ -201,17 +193,24 @@ During the bachelor thesis the following things where produced:
 \subsection{Multilayer perceptron}
 \subsection{Backpropagation}
 \subsection{GQN Network}
-\cite{gqn}
+This work uses a simplefied implementation of the Generative Query Network \cite{gqn}.
 
 
 
 \chapter{Workflow}
+The first step was to create a working implementation of neural network, that is able to learn
 out of what iteration flows was workflow composed \\
 Research, Implementation, Variation
 
 \section{Prototypes}
 Multiple protoypes explored:
+
+\subsection{Top down}
+The goal of this prototype is, to test how well the network could be used to hide information in a simple top town navigation environment.
+The idea is, that the network
+
 Walking sim,
+Object morphing
 Maze,
 Invisible Enemies
 
@@ -221,7 +220,7 @@ Invisible Enemies
 \section{Model}
 Model in python
 
-\subsection{Structure}
+\subsection{Network} \label{Network
 In this work a network the architecture of GQN differs from the implementation used in the original paper. Here I use multilayer perceptron models for encoder and decoder without random latent variables. This circumvents the necessity of having to use methods like evidence lower bound estimation for optimization.
 
 This however prevents the network from taking into account the inputs given during inference to the same extent as in the original experiments described in the paper. The only meaningful considerations of the inputs of the network were found to be the coloring of the sky, floor and walls (when the latter view have the same color). In the original implementation the network can correctly infer more properties like object position, rotation and texture.
