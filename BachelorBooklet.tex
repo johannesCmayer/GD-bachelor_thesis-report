@@ -18,6 +18,7 @@
 \usepackage{wrapfig}
 
 \setstretch{1.3}
+\setlength{\parskip}{1em}
 
 \titleformat{\chapter}
 	{\normalfont\huge\bfseries}{\thechapter}{1em}{}
@@ -73,13 +74,12 @@
 \node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{Images/FrontCover.png}};
 \draw ($(current page.south)+(0,5)$) node [fill=black,fill opacity=0.6,text opacity=1,inner sep=1cm]{\color{white}\Huge\centering\bfseries\sffamily\parbox[c][][t]{0.7\paperwidth}
 {Shrouded Mirror\\[0pt]
-{\Large Application of Neural Networks in interactive environments}\\[0pt]
+{\Large Neural Scene Rendering in interactive environments}\\[0pt]
 {\Large Johannes C. Mayer}}};
 \end{tikzpicture}
 \end{titlepage}
 
 \blankpage
-%\thispagestyle{plain}
 
 
 \pagenumbering{Roman}
@@ -91,7 +91,7 @@ Bachelor thesis booklet in \\ the studies of GAME DESIGN \\
 The work constitutes a technical design work piece \\
 \vspace*{\fill}
 {\huge Shrouded Mirror} \\
-Application of Neural Networks in interactive environments \\
+Neural Scene Rendering in interactive environments \\
 \vspace*{\fill}
 \textit{Submitted by} \\
 Johannes C. Mayer, 553087 \\
@@ -107,13 +107,11 @@ Fachbereich Gestaltung und Kultur \\
 \end{center}
 
 \chapter*{Expos\'e}
-In my bachelor thesis I want to evaluate how neural networks can be used in an interactive context to visualize (an environments) state. For this three prototypes will be developed. The first two act as preparation for the last one which presents a sample application in an interactive context.
+In my bachelor thesis I want to evaluate how neural networks can be used in an interactive context to visualize an environments state. For this three prototypes will be developed. The first two act as preparation for the last one which presents a sample application in an interactive context.
 
-\paragraph{}
-Neural networks have the ability to learn an abstract representations of the data being fed into it. This representation can then be used to generate new output. In this work a network is used, that is trained on data pairs, that consist of an Image and the corresponding coordinates, where the image was taken. {\color{red}TILL HERE REFACTOR STARTED} Combined with a set of scene coordinates to render an image that approximates very accurately what the actual camera would render when placed at the provided coordinates. This means that this technique can be used to create a virtual representation of an environment inside a game engine. 
+Neural networks have the ability to learn an abstract representations of the data being fed into it. This representation can then be used to generate new output. In this work a network is used, that is trained on data pairs, that consist of an Image and the corresponding coordinates, where the image was taken.  The network can now given a set of scene coordinates render an image that approximates what the actual camera would render when placed at the provided coordinates. This means that this technique can be used to create a second visual representation of an environment inside a game engine. 
 
-\paragraph{}
-Interesting possibilities open when integrating a GQN into an interactive environment. One example would be, that the player only sees the output of the GQN while the underlying “real” state of the environment is hidden from him. Now by manipulating the GQN we can influence how accurately its renderings are, in turn influencing what information is available to the player. One way this can be achieved is by deleting or adding new scene images to the representation network to encode into a new world model.
+Interesting possibilities open when integrating this network into an interactive environment. One example would be, that the player only sees the output of the network while the underlying “real” state of the environment is hidden from him.
 
 %\subsubsection{Workflow}
 %The Project will be split up into three phases. Each phase will result in a prototype, that the following phase builds on.
@@ -143,6 +141,7 @@ Interesting possibilities open when integrating a GQN into an interactive enviro
 %\item{Executable and source of prototype III}
 %\item{1 - 5 minutes video material, captured from interactions with prototype III}
 %\end{itemize}
+\clearpage
 
 \tableofcontents
 
@@ -157,8 +156,8 @@ Interesting possibilities open when integrating a GQN into an interactive enviro
 
 \begin{figure}[hbt]
 \centering
- {\caption{Caption}
-    \figsource{Source}}
+ {\caption{Test caption of img}
+    \figsource{Own graphic}}
        %\subcaptionbox{Caption1}
 {\includegraphics[width=0.4\textwidth]{Images/FrontCover.png}}
         %\figsource{Source1}
@@ -180,6 +179,14 @@ Why is this a good idea
 
 \section{Scope}
 what has been done, what pices constitute the work?
+During the bachelor thesis the following things where produced:
+
+\begin{itemize}
+\item{Data generation environment}
+\item{Data processing pipeline}
+\item{Scene rendering neural network model}
+\item{}
+\end{itemize}
 
 
 
@@ -207,9 +214,6 @@ Multiple protoypes explored:
 Walking sim,
 Maze,
 Invisible Enemies
-
-\section{Evaluation}
-Good, but more early on more strucktured exploration (especially automatic) for neural network parameter tweaks
 
 
 
@@ -242,6 +246,11 @@ player can shoot laser and destroy enemies
 
 \paragraph{Smoke balls}
 player can throw smoke balls which reveal invisible enemies and reveale the where the physical walls are in the smoke
+
+
+
+\section{Workflow Evaluation}
+Good, but more early on more strucktured exploration (especially automatic) for neural network parameter tweaks
 
 
 
@@ -380,9 +389,13 @@ I would like to thank my professors and fellow students, who gave feedback that 
 
 \chapter*{Statement of Authorship}
 I hereby declare that I am the sole author of this bachelor thesis and that I have not used any sources other than those listed in the bibliography- and resources section. I further declare that I have not submitted this thesis at any other institution in order to obtain a degree.
-\begin{spacing}{4}
+\begin{spacing}{5}
+\null
+\begin{spacing}{1}
 \noindent
-(Place, Date)\dotfill \space (Signature)\dotfill
+\dotfill \space \space \dotfill \\
+(Place, Date) \hfill (Signature)\hfill \null
+\end{spacing}
 \end{spacing}
 
 
