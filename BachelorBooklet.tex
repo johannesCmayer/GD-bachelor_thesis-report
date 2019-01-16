@@ -76,8 +76,8 @@
 \node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{Images/FrontCover.png}};
 \draw ($(current page.south)+(0,5)$) node [fill=black,fill opacity=0.6,text opacity=1,inner sep=1cm]{\color{white}\Huge\centering\bfseries\sffamily\parbox[c][][t]{0.7\paperwidth}
 {Shrouded Mirror\\[0pt]
-{\Large Neural Scene Rendering in interactive environments}\\[0pt]
-{\Large Johannes C. Mayer}}};
+{\Large Neural Network Based Rendering \\[-6mm] in Interactive Environments}\\[0cm]
+{\large Johannes C. Mayer}}};
 \end{tikzpicture}
 \end{titlepage}
 
@@ -87,21 +87,21 @@
 \pagenumbering{Roman}
 \begin{flushleft}
 \begin{spacing}{1.5}
-{\Large
-Bachelor thesis booklet in \\ the studies of GAME DESIGN \\
-\vspace*{\fill}
-The work constitutes a \\ technical design work piece \\
+{\large
+Bachelor thesis booklet in the studies of GAME DESIGN \\
+%\vspace*{\fill}
+The work constitutes a technical design work piece \\
 \vspace*{\fill}
 {\Huge Shrouded Mirror} \\
-Neural Scene Rendering \\ in interactive environments \\
+{\Large Neural Network Based Rendering \\ in Interactive Environments \\}
 \vspace*{\fill}
 \textit{Submitted by} \\
 Johannes C. Mayer, 553087 \\
 on \today \\
-\vspace*{\fill}
+\vspace*{1cm}
 \textit{First Examiner:} Prof. Thomas Bremer \\
 \textit{Second Examiner:} Prof. Susanne Brandhorst \\
-\vspace*{\fill}
+\vspace*{1cm}
 Hochschule f\"ur Technik und Wirtschaft Berlin \\
 Fachbereich Gestaltung und Kultur \\
 }
@@ -175,8 +175,8 @@ During the bachelor thesis the following things where developed:
 \begin{itemize}
 \item{Data generation environment}
 \item{Data processing pipeline}
-\item{Scene rendering neural network model training pipeline}
-\item{Send network output in Unity}
+\item{Scene rendering neural network model and training pipeline}
+\item{System to send network output in Unity}
 \item{Merging of network output with unity rendered objects}
 \item{Several exploratory prototypes}
 \item{One extended Prototype (Maze game)}
@@ -229,10 +229,10 @@ This means that the derivative can be used to find out how a function changes lo
 \subsection{Multivariate}
 The same can be applied to functions with multiple parameters:
 \begin{equation}
-\frac{\partial f(x_1, x_2)}{\partial x_1} = \lim_{h\to 0}\frac{f(x_1, x_2 + \partial x_1) - f(x_1, x_2)}{\partial x_1}
+\frac{\partial f(x_1, x_2)}{\partial x_1} = \lim_{\partial x_1 \to 0}\frac{f(x_1, x_2 + \partial x_1) - f(x_1, x_2)}{\partial x_1}
 \end{equation}
 \begin{equation}
-\frac{\partial f(x_1, x_2)}{\partial x_2} = \lim_{h\to 0}\frac{f(x_1, x_2 + \partial x_2) - f(x_1, x_2)}{\partial x_2}
+\frac{\partial f(x_1, x_2)}{\partial x_2} = \lim_{\partial x_2 \to 0}\frac{f(x_1, x_2 + \partial x_2) - f(x_1, x_2)}{\partial x_2}
 \end{equation}
 Here each equation defines as how much the output of the function changes locally when the corresponding input parameter to the function varies.
 The gradient of $f(x_1, x_2)$ is defined as:
@@ -314,10 +314,6 @@ player can throw smoke balls which reveal invisible enemies and reveale the wher
 
 
 
-\section{Workflow Evaluation}
-Good, but more early on more strucktured exploration (especially automatic) for neural network parameter tweaks
-
-
 
 \chapter{Further work}
 In this section possible further applications based on the found data is discussed.
@@ -337,6 +333,17 @@ GQN hard so not very good implementation. Variational metods, random ratent vari
 \subsection{Implement original GQN}
 \subsection{Implement environment time step prediction}
 \section{Expanded GQN directions}
+
+
+
+\chapter{Reflection}
+\section{Project}
+The project has many flaws, list what did not work and how to remedy it.
+
+\section{Workflow Evaluation}
+Good, but more early on more strucktured exploration (especially automatic) for neural network parameter tweaks
+
+
 
 
 
@@ -423,7 +430,6 @@ wincertstore        & 0.2 \\
 \end{tabular}
 \newpage
 
-
 \section{Textures}
 \begin{centering}
 \begin{tabular}{l|l}
@@ -438,8 +444,6 @@ Texture & Source \\
 \end{tabular}
 \end{centering}
 
-
-
 \bibliographystyle{plain}
 \bibliography{BachelorBooklet}
 
@@ -448,7 +452,9 @@ Texture & Source \\
 
 
 \chapter*{Acknowledgments}
-I would like to thank my professors and fellow students, who gave feedback that helped me to steer the project in the right direction.
+I like to thank Yannick Pawils for our daily insightful discussions and for his feedback which was a great guidance to me. \\
+Also I like to thank my professor Thomas Bremer for the feedback and guidance he provided.\\
+Furthermore I like to thank Susanne Brandhorst, Jules Pommier and Matthias Mayer.
 
 
 
