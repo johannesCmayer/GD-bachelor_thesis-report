@@ -1,0 +1,75 @@
+\chapter{Background}
+\section{Neural networks}
+To give a better intuition for how neural networks are used in this project, a brief overview follows describing the components necessary to build a simple neural network. 
+
+In brief a neural network is computational structure made up of multiple units called neurons.
+
+\subsection{Neuron}
+In its simple form a neuron can be defined as:
+\begin{equation}
+\begin{split}
+N_{\boldsymbol w, b}(\boldsymbol{x}) & = \sigma\Bigg(b + \sum_{i=0}^{N}{\boldsymbol{w}_i \boldsymbol{x}_i}\Bigg) \\
+& = \sigma (\boldsymbol{w} \cdot \boldsymbol{x} + b)
+\end{split}
+\end{equation}
+Where $\boldsymbol{x} \in \mathbb{R}^N$ is a vector containing all inputs, $ \boldsymbol{w} \in \mathbb{R}^N$ a vector containing the neurons weights, $b \in \mathbb{R}$ is the bias, $N \in \mathbb{Z}$ is the number of inputs and $\sigma$ is a nonlinear function refereed to as the activation function of the neuron. This function is often set to be the rectified linear unit $ReLU(x) = \max(0, x)$.
+
+Intuitively a neuron performs a weighted sum over its inputs adds a bias and applies an activation function to the result to calculate the final output.
+
+Normally we are interested in finding a specific weight vectors and biases for neurons, so that they can perform a desired computation.
+
+
+\subsection{Multilayer network}
+A neural network layer can be formed, multiple  the neurons are organized together in layers.
+\multilayerNetworkGraph
+
+\section{Differential calculus}
+Differential Calculus is an area of mathematics, that studies how a functions output changes with regard to tiny nudges to its inputs. 
+
+\subsection{Univariate}
+The derivative says how much the output of a function increases, at a specific point. It is defined as: 
+\begin{equation}
+\frac{df(x)}{dx} = \lim_{dx \to 0}\frac{f(x + dx) - f(x)}{dx}
+\end{equation}
+Intuitively this can be interpreted as the amount the output of the function changes when we increase the parameter to function by some tiny amount divided by how tiny that amount was. The $\lim_{dx \to 0}$ means, that we don't use a specific value for $dx$ but take the value the equation approaches when $dx$ approaches $0$, without $dx$ ever becomming $0$.
+
+This means that the derivative can be used to find out how a function changes locally. If the derivative is positive and we increase the input to the function at the point the derivative was evaluated the output increases in size proportional to the magnitude of the derivative. The same logic applies when the derivative is negative.
+
+\subsection{Multivariate}
+The same can be applied to functions with multiple parameters:
+\begin{equation}
+\frac{\partial f(x_1, x_2)}{\partial x_1} = \lim_{\partial x_1 \to 0}\frac{f(x_1, x_2 + \partial x_1) - f(x_1, x_2)}{\partial x_1}
+\end{equation}
+\begin{equation}
+\frac{\partial f(x_1, x_2)}{\partial x_2} = \lim_{\partial x_2 \to 0}\frac{f(x_1, x_2 + \partial x_2) - f(x_1, x_2)}{\partial x_2}
+\end{equation}
+Here each equation defines as how much the output of the function changes locally when the corresponding input parameter to the function varies.
+The gradient of $f(x_1, x_2)$ is defined as:
+\begin{equation}
+\nabla f(x_1, x_2) = 
+	\begin{bmatrix}
+	\frac{\partial f(x_1, x_2)}{\partial x_1} \\[2mm]
+	\frac{\partial f(x_1, x_2)}{\partial x_2}
+	\end{bmatrix}
+\end{equation}
+This means the gradient contains all the information, of how a function varies
+
+\subsection{Gradient decent}
+Neu
+
+\subsection{Chain rule}
+\subsection{What more?}
+
+
+\subsection{Backpropagation}
+In practice neural networks are constructed as computation graphs. This means a the computations are defined by how edges connect to nodes, where the nodes correspond to operations to be performed.
+Define computation graph, to enable reverse mode auto diff.
+
+\subsection{GQN Network}
+This work uses a simplefied implementation of the Generative Query Network \cite{gqn}.
+
+In this work a network the architecture of GQN differs from the implementation used in the original paper. Here I use multilayer perceptron models for encoder and decoder without random latent variables. This circumvents the necessity of having to use the evidence lower bound as an optimization target.
+
+This however prevents the network from taking into account the inputs given during inference to the same extent as in the original experiments described in the paper. The only meaningful considerations of the inputs of the network were found to be the coloring of the sky, floor and walls (when the latter view have the same color). In the original implementation the network can correctly infer more properties like object position, rotation and texture.
+
+Because interesting use cases where found, that do not depend on this property of the GQN network no more effort was put into recreating the ability of the network to model different scenes.

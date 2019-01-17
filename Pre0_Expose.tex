@@ -1,0 +1,36 @@
+\chapter*{Expos\'e}
+In my bachelor thesis I want to evaluate how neural networks can be used in an interactive context to visualize an environments state. For this the project is structured into three phases. First create a simple implementation of the algorithms required, then explore possible applications, third develop the most promising application further.
+
+Neural networks have the ability to learn an abstract representations of the data being fed into it. This representation can then be used to generate new output. In this work a network is used, that is trained on data pairs, that consist of an Image and the corresponding coordinates, where the image was taken.  The network can now given a set of scene coordinates render an image that approximates what the actual camera would render when placed at the provided coordinates. This means that this technique can be used to create a second visual representation of an environment inside a game engine. 
+
+Interesting possibilities open when integrating this network into an interactive environment. One example would be, that the player only sees the output of the network while the underlying “real” state of the environment is hidden from him.
+
+%\subsubsection{Workflow}
+%The Project will be split up into three phases. Each phase will result in a prototype, that the following phase builds on.
+%
+%\paragraph{I.  Implementation}
+%Determine which library to use. PyTorch, Chainer, Keras, Tensorflow are possible candidates. The first two might be prefered due to their ability to define computation graphs dynamically which would possibly allow the output size of the GQN to scale with screen size. With the selected library, a GQN is implemented into the target environment (most likely Unity).ii
+%
+%\paragraph{II. Exploration}
+%The implementation of the GQN will now be investigated in regards to its manipulability and  constraintsivenes. The following questions will be answered:
+%
+%Is it viable to inject additional parameters into the model, to enable more interesting behaviour?
+%What are the time constraints of applying a GQN into an interactive real time environment (training time, rendering time, updating worldmodel)?
+%
+%Can a normal in game camera be overlayed with the output of the GQN?
+%Can objects be made to switch contexts of being displayed via GQN or camera dynamically?
+%Which interesting ways of interaction between player and the way the GQN behaves can be created, given other constraints?
+%
+%\paragraph{III. Simple Application}
+%With the Gathered data on the limitations and possibilities a simple prototype application is conceptualized and developed. It demonstrates one or multiple scenarios in which the GQN can be applied to create or enhance an interactive environment.
+%
+%\subsubsection{Work piece}
+%The following items will be produced during the Project:
+%\begin{itemize}
+%\item{Writing}
+%\item{Discussion of the Results form prototype II}
+%\item{Reflection on the project}
+%\item{Executable and source of prototype III}
+%\item{1 - 5 minutes video material, captured from interactions with prototype III}
+%\end{itemize}
+\clearpage
