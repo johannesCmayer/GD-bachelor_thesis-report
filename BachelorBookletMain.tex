@@ -1,5 +1,7 @@
 \documentclass[a4paper, twoside, 10pt]{report}
 
+\input{Graphs.tex}
+
 \usepackage{fancyhdr}
 \usepackage{color}
 \usepackage{afterpage}
@@ -10,7 +12,7 @@
 \usepackage{setspace}
 \usepackage{titlesec}
 \usepackage{tikz}
-\usetikzlibrary{calc}
+\usetikzlibrary{calc,arrows,shapes,snakes,automata,backgrounds,petri}
 \usepackage[margin=5cm]{geometry}
 \usepackage{avant}
 \usepackage{makecell}
@@ -18,6 +20,7 @@
 \usepackage{wrapfig}
 \usepackage{ragged2e}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
 
 \setstretch{1.3}
 \setlength{\parskip}{1em}
@@ -80,6 +83,7 @@
 {\large Johannes C. Mayer}}};
 \end{tikzpicture}
 \end{titlepage}
+
 
 \blankpage
 
@@ -152,37 +156,7 @@ Interesting possibilities open when integrating this network into an interactive
 
 \pagenumbering{arabic}
 
-
-
-\chapter{Introduction}
-Shrouded mirror is an experimental experience, where the player sees the world through the eyes of a neural network. The player moves through an environment, collects beacons and avoids enemies. Each type of entity emits a unique audio signal, creating a distinctive soundscape.
-\begin{figure}[hbt]
-\centering
- {\caption{Test caption of img}
-    \figsource{Own graphic}}
-{\includegraphics[width=0.4\textwidth]{Images/FrontCover.png}}
-\end{figure}
-
-\section{Motivation}
-%There are some semi-interactive applications for image processing neural networks, such as style transfer. These applications are limited in the interactions they offer to the user. Often the only interactive part is the selection of the images that are fed into the algorithm. 
-Using the representation of an environment a neural network has learned, to present the state of an environment to the player is still an nearly unexplored avenue. 
-In this work I explore how neural networks can be used to create a unique interactive experiences, by using the output the neural representation of the network produces as the main information stream presented to the player.
-
-\section{Scope}
-what has been done, what pices constitute the work?
-During the bachelor thesis the following things where developed:
-
-\begin{itemize}
-\item{Data generation environment}
-\item{Data processing pipeline}
-\item{Scene rendering neural network model and training pipeline}
-\item{System to send network output in Unity}
-\item{Merging of network output with unity rendered objects}
-\item{Several exploratory prototypes}
-\item{One extended Prototype (Maze game)}
-\end{itemize}
-
-
+\input{C1_Introduction.tex}
 
 \chapter{Background}
 \section{Neural networks}
@@ -193,14 +167,21 @@ In brief a neural network is computational structure made up of multiple units c
 \subsection{Neuron}
 In its simple form a neuron can be defined as:
 \begin{equation}
-N_{\boldsymbol w, b}(\boldsymbol{x}) = \sigma\Bigg(b + \sum_{i=0}^{N}{\boldsymbol{w}_i \cdot \boldsymbol{x}_i}\Bigg)
+\begin{split}
+N_{\boldsymbol w, b}(\boldsymbol{x}) & = \sigma\Bigg(b + \sum_{i=0}^{N}{\boldsymbol{w}_i \boldsymbol{x}_i}\Bigg) \\
+& = \sigma (\boldsymbol{w} \cdot \boldsymbol{x} + b)
+\end{split}
 \end{equation}
-Where $\boldsymbol{x} \in \mathbb{R}^N$ is a vector containing all inputs and  $ \boldsymbol{w} \in \mathbb{R}^N$ a vector containing the neurons weights, $b \in \mathbb{R}$ is the bias, $N \in \mathbb{Z}$ is the number of inputs and $\sigma$ is a nonlinear function refereed to as the activation function of the neuron. This function is often set to be the rectified linear unit $ReLU(x) = \max(0, x)$.
+Where $\boldsymbol{x} \in \mathbb{R}^N$ is a vector containing all inputs, $ \boldsymbol{w} \in \mathbb{R}^N$ a vector containing the neurons weights, $b \in \mathbb{R}$ is the bias, $N \in \mathbb{Z}$ is the number of inputs and $\sigma$ is a nonlinear function refereed to as the activation function of the neuron. This function is often set to be the rectified linear unit $ReLU(x) = \max(0, x)$.
 
 Intuitively a neuron performs a weighted sum over its inputs adds a bias and applies an activation function to the result to calculate the final output.
 
+Normally we are interested in finding a specific weight vectors and biases for neurons, so that they can perform a desired computation.
+
+
 \subsection{Multilayer network}
 A neural network layer can be formed, multiple  the neurons are organized together in layers.
+\multilayerNetworkGraph
 
 \section{Differential calculus}
 Differential Calculus is an area of mathematics, that studies how a functions output changes with regard to tiny nudges to its inputs. 

@@ -1,0 +1,49 @@
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{fp}
+
+\def\multilayerNetworkGraph{
+	\newcommand{\neuron}[4]{
+		\node [circle,draw=black,inner sep=0cm,minimum size=1.2cm](##3) at (##1,##2) {##4};
+	}
+	\begin{figure}
+	\begin{center}	
+	\begin{tikzpicture}		
+		\def\circleSize{0.8cm}
+		\def\layerdist{3.6}
+		
+		\def\mcOne{2}
+		\foreach\n in {0,...,\mcOne}{
+		 \FPeval{\ypos}{(\n - (\mcOne * 0.5)) * 2.2}
+		 \neuron{0 * \layerdist}{\ypos * \circleSize}{A\n}{I}
+		}
+		\def\mcTwo{3}
+		\foreach\n in {0,...,\mcTwo}{
+		 \FPeval{\ypos}{(\n - (\mcTwo * 0.5)) * 2.2}
+		 \neuron{\circleSize*\layerdist}{\ypos * \circleSize}{B\n}{$\Sigma$}
+		 \foreach\m in {0,...,\mcOne}
+		  \draw[->, to path={-> (\tikztotarget)}] (A\m) edge (B\n);
+		}
+		\def\mcThree{3}
+		\foreach\n in {0,...,\mcThree}{
+		 \FPeval{\ypos}{(\n - (\mcThree * 0.5)) * 2.2}
+		 \neuron{\circleSize*\layerdist*2}{\ypos * \circleSize}{C\n}{$\Sigma$}
+		 \foreach\m in {0,...,\mcTwo}
+		  \draw[->, to path={-> (\tikztotarget)}] (B\m) edge (C\n);
+		}
+		\def\mcFour{0}
+		\foreach\n in {0,...,\mcFour}{
+		 \FPeval{\ypos}{(\n - (\mcFour * 0.5)) * 2.2}
+		 \neuron{\circleSize*\layerdist*3}{\ypos * \circleSize}{D\n}{$\Sigma$}
+		 \foreach\m in {0,...,\mcThree}
+		  \draw[->, to path={-> (\tikztotarget)}] (C\m) edge (D\n);
+		}
+		\FPeval{\ypos}{\mcThree + 1}
+		\node[draw,align=left] at (\circleSize*\layerdist * 0, \ypos) {Input};
+		\node[draw,text width=4cm, align=center] at (\circleSize*\layerdist *1.5, \ypos) {Hidden units};
+		\node[draw,align=left] at (\circleSize*\layerdist *3, \ypos) {Output};	
+	\end{tikzpicture}	
+	\caption{Multilayer neural network structure}	
+	\end{center}
+	\end{figure}
+}
