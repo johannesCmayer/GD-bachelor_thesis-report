@@ -1,5 +1,7 @@
 \documentclass[a4paper, twoside, 10pt]{report}
 
+\newcommand{\finalcommand}{}
+
 \include{Lib1_Graphs}
 
 \usepackage{fancyhdr}
@@ -21,6 +23,8 @@
 \usepackage{ragged2e}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.16}
+\usepackage{pgffor}
+\usepackage{fp}
 
 \setstretch{1.3}
 \setlength{\parskip}{1em}
@@ -39,9 +43,8 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 \pagestyle{fancyplain}
-%\fancyhf{}
 \fancyfoot{}
-\fancyfoot[le,ro]{{\small \thepage} \\[4mm] }%{\scriptsize Johannes C. Mayer}}
+\fancyfoot[le,ro]{{\small \thepage} \\[4mm] }
 
 \usepackage[list=true]{subcaption}
 \usepackage{tocloft}
@@ -64,10 +67,10 @@
 % {\caption{Caption}
 %    \figsource{Source}}
 %       \subcaptionbox{Caption1}
-%{\includegraphics[width=0.4\textwidth]{Images/FrontCover.png}}
+%{\includegraphics[width=0.4\textwidth]{images/FrontCover.png}}
 %       \figsource{Source1}
 %\subcaptionbox{Caption2}
-%{ \includegraphics[width=0.4\textwidth]{Images/FrontCover.png}}
+%{ \includegraphics[width=0.4\textwidth]{images/FrontCover.png}}
 %        \figsource{Source2}
 %\end{figure}
 
@@ -75,17 +78,17 @@
 
 \begin{titlepage}
 \begin{tikzpicture}[remember picture,overlay]
-\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{Images/FrontCover.png}};
-\draw ($(current page.south)+(0,5)$) node [fill=black,fill opacity=0.6,text opacity=1,inner sep=1cm]{\color{white}\Huge\centering\bfseries\sffamily\parbox[c][][t]{0.7\paperwidth}
-{Shrouded Mirror\\[0pt]
-{\Large Neural Network Based Rendering \\[-6mm] in Interactive Environments}\\[0cm]
-{\large Johannes C. Mayer}}};
+	\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{images/FrontCover.png}};
+	\draw ($(current page.south)+(0,5)$) node [fill=black,fill opacity=0.6,text opacity=1,inner sep=1cm]{\color{white}\Huge\centering\bfseries\sffamily\parbox[c][][t]{0.7\paperwidth}
+	{Shrouded Mirror\\[0pt]
+	{\Large Neural Network Based Rendering \\[-6mm] in Interactive Environments}\\[0cm]
+	{\large Johannes C. Mayer}}};
 \end{tikzpicture}
 \end{titlepage}
 
 
 \blankpage
-
+eeeeeeeee
 
 \pagenumbering{Roman}
 \begin{flushleft}
@@ -178,4 +181,5 @@ I hereby declare that I am the sole author of this bachelor thesis and that I ha
 \node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{Images/BackCover.png}};
 \end{tikzpicture}
 
+\finalcommand
 \end{document}
