@@ -1,0 +1,34 @@
+\documentclass{article}
+\begin{document}
+\let\\\relax
+
+\def\val{0}
+\newcommand{\calculate}{\directlua{
+
+  local x=10 * 5 + 3 / 99
+  local y=tex.val
+  tex.val=5
+  tex.print(tex.val)
+  tex.print("hello")
+  tex.print(x)
+  tex.print([===[
+    \hskip1cm hello testing {y}
+  ]===])
+  %tex.print("\newcommand{\test}{hello this is a test}")
+}}
+
+\directlua{
+  testVar="hello this is carried over"
+}
+
+\directlua{
+  tex.print("loooook")
+  tex.print(testVar)
+}
+
+\calculate
+
+\val
+%\test
+
+\end{document}

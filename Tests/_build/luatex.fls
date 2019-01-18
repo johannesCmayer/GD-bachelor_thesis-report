@@ -1,0 +1,28 @@
+PWD D:\LaTex\BachelorBooklet\Tests
+INPUT C:\Users\Johannes\AppData\Local\MiKTeX\2.9\miktex\data\le\luatex\lualatex.fmt
+INPUT .\luatex.tex
+INPUT .\luatex.tex
+OUTPUT D:\LaTex\BachelorBooklet\Tests\_build\luatex.log
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\luatex\lualibs\lualibs-basic.lua
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\luatex\lualibs\lualibs-basic-merged.lua
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\luatex\lualibs\lualibs-compat.lua
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\luatex\lualibs\lualibs-extended.lua
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\luatex\lualibs\lualibs-extended-merged.lua
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\luatex\luaotfload\luaotfload-characters.lua
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo
+INPUT C:\Users\Johannes\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo
+INPUT C:\Users\Johannes\AppData\Local\MiKTeX\2.9\luatex-cache\generic\fonts\otl\lmroman10-regular.luc
+INPUT D:\LaTex\BachelorBooklet\Tests\_build\luatex.aux
+INPUT D:\LaTex\BachelorBooklet\Tests\_build\luatex.aux
+INPUT D:\LaTex\BachelorBooklet\Tests\_build\luatex.aux
+INPUT D:\LaTex\BachelorBooklet\Tests\_build\luatex.aux
+OUTPUT D:\LaTex\BachelorBooklet\Tests\_build\luatex.aux
+OUTPUT D:\LaTex\BachelorBooklet\Tests\_build\luatex.pdf
+INPUT D:\LaTex\BachelorBooklet\Tests\_build\luatex.aux
+INPUT D:\LaTex\BachelorBooklet\Tests\_build\luatex.aux

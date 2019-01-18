@@ -1,3 +1,7 @@
+\newcommand{\neuronSum}[1][N]{
+	\sigma\Bigg(\sum_{i=1}^{#1}{\Big(\boldsymbol{w}_i \boldsymbol{x}_i\Big)} + b\Bigg)
+}
+
 \chapter{Background}
 \section{Neural networks}
 To give a better intuition for how neural networks are used in this project, a brief overview follows describing the components necessary to build a simple neural network.
@@ -8,21 +12,31 @@ In brief a neural network is computational structure made up of multiple units c
 In its simple form a neuron can be defined as:
 \begin{equation}
 \begin{split}
-	N_{\boldsymbol w, b}(\boldsymbol{x}) & = \sigma\Bigg(b + \sum_{i=0}^{N}{\boldsymbol{w}_i \boldsymbol{x}_i}\Bigg) \\
+	N_{\boldsymbol w, b}(\boldsymbol{x}) & = \neuronSum \\
 	& = \sigma (\boldsymbol{w} \cdot \boldsymbol{x} + b)
 \end{split}
 \end{equation}
-Where $\boldsymbol{x} \in \mathbb{R}^N$ is a vector containing all inputs, $ \boldsymbol{w} \in \mathbb{R}^N$ a vector containing the neurons weights, $b \in \mathbb{R}$ is the bias, $N \in \mathbb{Z}$ is the number of inputs and $\sigma$ is a nonlinear function refereed to as the activation function of the neuron. This function is often set to be the rectified linear unit $ReLU(x) = \max(0, x)$.
+Where $\boldsymbol{x} \in \mathbb{R}^N$ is a vector containing all inputs, $ \boldsymbol{w} \in \mathbb{R}^N$ a vector containing the neurons weights, $b \in \mathbb{R}$ is the bias, $N \in \mathbb{Z}$ is the number of inputs and $\sigma$ is a nonlinear function refereed to as the activation function of the neuron. $\sigma$ is often set to be the rectified linear unit $ReLU(x) = \max(0, x)$.
 
 Intuitively a neuron performs a weighted sum over its inputs adds a bias and applies an activation function to the result to calculate the final output.
 
 Normally we are interested in finding a specific weight vectors and biases for neurons, so that they can perform a desired computation.
-\clearpage
+
+$\sigma$ and the addition of $b$ are applied to each element of the vector.
+
+use
+Initialization
+Why is b a good idea; Threshhold function
+
+\neuronGraph{h}{$\displaystyle{\neuronSum[3]}$}
+
+\multilayerNetworkGraph[h]
 
 \subsection{Multilayer network}
-As seen in \ref{multilayerNetworkGraph} a neural network work can be formed out if neurons, by first organizing multiple neurons into a layer and then connecting multiple layers together. To get a dense network, each neuron in a layer gets as inputs the outputs of all the neurons in the previous layer. In the first layer---which is also called the input layer---we simply set the outputvalues of the neurons to what we like to have as input to the network.
+As seen in figure \ref{multilayerNetworkGraph} a neural network work can be formed out if neurons, by first organizing multiple neurons into a layer and then connecting multiple layers together. To get a dense network, each neuron in a layer gets as inputs the outputs of all the neurons in the previous layer. In the first layer---which is also called the input layer---we simply set the outputvalues of the neurons to what we like to have as input to the network.
+
 \vspace*{\fill}
-\multilayerNetworkGraph
+
 
 \section{Differential calculus}
 Differential Calculus is an area of mathematics, that studies how a functions output changes with regard to tiny nudges to its inputs.

@@ -1,46 +1,86 @@
-\def\multilayerNetworkGraph{
-	\newcommand{\neuron}[4]{
-		\node [circle,draw=black,inner sep=0cm,minimum size=1.2cm](##3) at (##1,##2) {##4};
-	}
-	\begin{figure}
+
+\newcommand{\neuron}[4]{
+	\node [circle,draw=black,inner sep=2mm,minimum size=1.2cm](#3) at (#1,#2) {#4};
+}
+
+\newcommand{\multilayerNetworkGraph}[1][b]{
+	\begin{figure}[#1]
 	\begin{center}
-	\begin{tikzpicture}
-		\def\circleSize{0.8cm}
+	\begin{tikzpicture}[thick,>=stealth']
+		\def\csunit{cm}
+		\def\circleSize{0.8}
 		\def\layerdist{3.6}
 
 		\def\mcOne{2}
 		\foreach\n in {0,...,\mcOne}{
 		 \FPeval{\ypos}{(\n - (\mcOne * 0.5)) * 2.2}
-		 \neuron{0 * \layerdist}{\ypos * \circleSize}{A\n}{I}
+		 \neuron{0 * \layerdist}{\ypos * \circleSize\csunit}{A\n}{I}
 		}
 		\def\mcTwo{3}
 		\foreach\n in {0,...,\mcTwo}{
 		 \FPeval{\ypos}{(\n - (\mcTwo * 0.5)) * 2.2}
-		 \neuron{\circleSize*\layerdist}{\ypos * \circleSize}{B\n}{$\Sigma$}
+		 \neuron{\circleSize\csunit*\layerdist}{\ypos * \circleSize\csunit}{B\n}{$N$}
 		 \foreach\m in {0,...,\mcOne}
-		  \draw[->, to path={-> (\tikztotarget)}] (A\m) edge (B\n);
+			\draw[->, to path={-> (\tikztotarget)}] (A\m) edge (B\n);
 		}
 		\def\mcThree{3}
 		\foreach\n in {0,...,\mcThree}{
 		 \FPeval{\ypos}{(\n - (\mcThree * 0.5)) * 2.2}
-		 \neuron{\circleSize*\layerdist*2}{\ypos * \circleSize}{C\n}{$\Sigma$}
+		 \neuron{\circleSize\csunit*\layerdist*2}{\ypos * \circleSize\csunit}{C\n}{$N$}
 		 \foreach\m in {0,...,\mcTwo}
-		  \draw[->, to path={-> (\tikztotarget)}] (B\m) edge (C\n);
+			\draw[->, to path={-> (\tikztotarget)}] (B\m) edge (C\n);
 		}
 		\def\mcFour{0}
 		\foreach\n in {0,...,\mcFour}{
-		 \FPeval{\ypos}{(\n - (\mcFour * 0.5)) * 2.2}
-		 \neuron{\circleSize*\layerdist*3}{\ypos * \circleSize}{D\n}{$\Sigma$}
+		\FPeval{\ypos}{(\n - (\mcFour * 0.5)) * 2.2}
+		 \neuron{\circleSize\csunit*\layerdist*3}{\ypos * \circleSize\csunit}{D\n}{$N$}
 		 \foreach\m in {0,...,\mcThree}
-		  \draw[->, to path={-> (\tikztotarget)}] (C\m) edge (D\n);
+			\draw[->, to path={-> (\tikztotarget)}] (C\m) edge (D\n);
 		}
+		\FPeval{\xpos}{\circleSize*\layerdist*3 + 1}
+		\draw[->, to path={-> (\tikztotarget)}] (D0) edge (\xpos\csunit,0);
+
 		\FPeval{\ypos}{\mcThree + 1}
-		\node[draw,align=left] at (\circleSize*\layerdist * 0, \ypos) {Input};
-		\node[draw,text width=4cm, align=center] at (\circleSize*\layerdist *1.5, \ypos) {Hidden units};
-		\node[draw,align=left] at (\circleSize*\layerdist *3, \ypos) {Output};
+		\node[draw,align=left] at (\circleSize\csunit*\layerdist * 0, \ypos) {Input};
+		\node[draw,text width=4cm, align=center] at (\circleSize\csunit*\layerdist *1.5, \ypos) {Hidden units};
+		\node[draw,align=left] at (\circleSize\csunit*\layerdist *3, \ypos) {Output};
 	\end{tikzpicture}
+
+
+	{
 	\caption{Multilayer neural network structure}
+	\figsource{Own graphic}
 	\label{multilayerNetworkGraph}
+	}
+
+
 	\end{center}
+	\end{figure}
+}
+
+\newcommand{\neuronGraph}[2]{
+	\begin{figure}[#1]
+	\begin{center}
+	\begin{tikzpicture}[thick,>=stealth']
+
+			\neuron{0}{0}{N}{#2}
+			\node (I1) at (-5,3){$\boldsymbol{x}_1$};
+			\node (I2) at (-5,0){$\boldsymbol{x}_2$};
+			\node (I3) at (-5,-3){$\boldsymbol{x}_3$};
+			\path[->]
+				(I1) edge [left] node [pos=0.5, sloped, above] {$\boldsymbol{w}_1$} (N)
+				(I2) edge node [pos=0.5, sloped, above] {$\boldsymbol{w}_2$} (N)
+				(I3) edge node [pos=0.5, sloped, above] {$\boldsymbol{w}_3$} (N)
+				(N) edge (5,0);
+
+	\end{tikzpicture}
+	\end{center}
+	
+	{
+	\caption{Graphical representation of a neuron with 3 inputs}
+	\figsource{Own graphic}
+	\label{neuronGraph}
+	}
+
 	\end{figure}
 }

@@ -1,0 +1,19 @@
+# Fdb version 3
+["lualatex"] 1547818868 "luatex.tex" "_build/luatex.pdf" "luatex" 1547818870
+  "C:/Users/Johannes/AppData/Local/MiKTeX/2.9/luatex-cache/generic/fonts/otl/lmroman10-regular.luc" 1547764933 129900 61c11c6cb3d44e985e3114bd51bbbb14 ""
+  "C:/Users/Johannes/AppData/Local/MiKTeX/2.9/miktex/data/le/luatex/lualatex.fmt" 1547764928 1374782 2500029c4a3b8589641331fed8745c01 ""
+  "C:/Users/Johannes/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/article.cls" 1544471104 19933 3097d1b31d3c45dc957096f554529032 ""
+  "C:/Users/Johannes/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/size10.clo" 1544471102 8294 6d6e23d5169c0d89d173f6c7e08a005a ""
+  "C:/Users/Johannes/AppData/Local/Programs/MiKTeX 2.9/tex/luatex/lualibs/lualibs-basic-merged.lua" 1540122854 136668 3d95e4f47a0d0cc0734d294c90677010 ""
+  "C:/Users/Johannes/AppData/Local/Programs/MiKTeX 2.9/tex/luatex/lualibs/lualibs-basic.lua" 1540122900 2722 2c41832e7e5bca0e54a58e34be26f602 ""
+  "C:/Users/Johannes/AppData/Local/Programs/MiKTeX 2.9/tex/luatex/lualibs/lualibs-compat.lua" 1537464594 603 398583cb619d20952d67edcedae41608 ""
+  "C:/Users/Johannes/AppData/Local/Programs/MiKTeX 2.9/tex/luatex/lualibs/lualibs-extended-merged.lua" 1540122854 104211 78561b15c40f6b7bc904f554337f06f8 ""
+  "C:/Users/Johannes/AppData/Local/Programs/MiKTeX 2.9/tex/luatex/lualibs/lualibs-extended.lua" 1540122900 4863 dac85610fa18349da7d19b832296180f ""
+  "C:/Users/Johannes/AppData/Local/Programs/MiKTeX 2.9/tex/luatex/luaotfload/luaotfload-characters.lua" 1540126888 3079519 2769d68826a1c1872ab6faf73a71e611 ""
+  "_build/luatex.aux" 1547818870 9 a94a2480d3289e625eea47cd1b285758 ""
+  "c:/users/johannes/appdata/local/programs/miktex 2.9/fonts/opentype/public/lm/lmroman10-regular.otf" 1254935040 111536 fc712364c8d0a1b548d46c76f2678030 ""
+  "luatex.tex" 1547818867 524 0f6028e26794b5c860b5d2187c4f9bba ""
+  (generated)
+  "_build/luatex.log"
+  "_build/luatex.aux"
+  "_build/luatex.pdf"
