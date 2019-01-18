@@ -1,6 +1,9 @@
+\def\hiddencol{rgb:black,0.5;white,10;violet,1.5}
+\def\inputcol{rgb:black,0.5;white,10;green,1}
+\def\outputcol{rgb:black,0.5;white,10;red,1.5}
 
-\newcommand{\neuron}[4]{
-	\node [circle,draw=black,inner sep=2mm,minimum size=1.2cm](#3) at (#1,#2) {#4};
+\newcommand{\neuron}[5]{
+	\node [circle, fill={#5},draw=black,inner sep=2mm,minimum size=1.2cm](#3) at (#1,#2) {#4};
 }
 
 \newcommand{\multilayerNetworkGraph}[1][b]{
@@ -14,36 +17,38 @@
 		\def\mcOne{2}
 		\foreach\n in {0,...,\mcOne}{
 		 \FPeval{\ypos}{(\n - (\mcOne * 0.5)) * 2.2}
-		 \neuron{0 * \layerdist}{\ypos * \circleSize\csunit}{A\n}{I}
+		 \neuron{0 * \layerdist}{\ypos * \circleSize\csunit}{A\n}{I}{\inputcol}
 		}
 		\def\mcTwo{3}
 		\foreach\n in {0,...,\mcTwo}{
 		 \FPeval{\ypos}{(\n - (\mcTwo * 0.5)) * 2.2}
-		 \neuron{\circleSize\csunit*\layerdist}{\ypos * \circleSize\csunit}{B\n}{$N$}
+		 \neuron{\circleSize\csunit*\layerdist}{\ypos * \circleSize\csunit}{B\n}{$N$}{\hiddencol}
 		 \foreach\m in {0,...,\mcOne}
 			\draw[->, to path={-> (\tikztotarget)}] (A\m) edge (B\n);
 		}
 		\def\mcThree{3}
 		\foreach\n in {0,...,\mcThree}{
 		 \FPeval{\ypos}{(\n - (\mcThree * 0.5)) * 2.2}
-		 \neuron{\circleSize\csunit*\layerdist*2}{\ypos * \circleSize\csunit}{C\n}{$N$}
+		 \neuron{\circleSize\csunit*\layerdist*2}{\ypos * \circleSize\csunit}{C\n}{$N$}{\hiddencol}
 		 \foreach\m in {0,...,\mcTwo}
 			\draw[->, to path={-> (\tikztotarget)}] (B\m) edge (C\n);
 		}
 		\def\mcFour{0}
 		\foreach\n in {0,...,\mcFour}{
 		\FPeval{\ypos}{(\n - (\mcFour * 0.5)) * 2.2}
-		 \neuron{\circleSize\csunit*\layerdist*3}{\ypos * \circleSize\csunit}{D\n}{$N$}
+		 \neuron{\circleSize\csunit*\layerdist*3}{\ypos * \circleSize\csunit}{D\n}{$N$}{\outputcol}
 		 \foreach\m in {0,...,\mcThree}
 			\draw[->, to path={-> (\tikztotarget)}] (C\m) edge (D\n);
 		}
 		\FPeval{\xpos}{\circleSize*\layerdist*3 + 1}
 		\draw[->, to path={-> (\tikztotarget)}] (D0) edge (\xpos\csunit,0);
 
+		\def\colD{rgb:black,1;white,10;violet,1}
 		\FPeval{\ypos}{\mcThree + 1}
-		\node[draw,align=left] at (\circleSize\csunit*\layerdist * 0, \ypos) {Input};
-		\node[draw,text width=4cm, align=center] at (\circleSize\csunit*\layerdist *1.5, \ypos) {Hidden units};
-		\node[draw,align=left] at (\circleSize\csunit*\layerdist *3, \ypos) {Output};
+
+		\node[fill={\inputcol},draw,align=left] at (\circleSize\csunit*\layerdist * 0, \ypos) {Input};
+		\node[fill={\hiddencol},draw,text width=4cm, align=center] at (\circleSize\csunit*\layerdist *1.5, \ypos) {Hidden units};
+		\node[fill={\outputcol},draw,align=left] at (\circleSize\csunit*\layerdist *3, \ypos) {Output};
 	\end{tikzpicture}
 
 
@@ -63,7 +68,7 @@
 	\begin{center}
 	\begin{tikzpicture}[thick,>=stealth']
 
-			\neuron{0}{0}{N}{#2}
+			\neuron{0}{0}{N}{#2}{\hiddencol}
 			\node (I1) at (-5,3){$\boldsymbol{x}_1$};
 			\node (I2) at (-5,0){$\boldsymbol{x}_2$};
 			\node (I3) at (-5,-3){$\boldsymbol{x}_3$};
@@ -75,7 +80,7 @@
 
 	\end{tikzpicture}
 	\end{center}
-	
+
 	{
 	\caption{Graphical representation of a neuron with 3 inputs}
 	\figsource{Own graphic}
