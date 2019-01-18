@@ -1,13 +1,15 @@
+% !TEX root = BachelorBookletMain.tex
+
 \def\multilayerNetworkGraph{
 	\newcommand{\neuron}[4]{
 		\node [circle,draw=black,inner sep=0cm,minimum size=1.2cm](##3) at (##1,##2) {##4};
 	}
 	\begin{figure}
-	\begin{center}	
-	\begin{tikzpicture}		
+	\begin{center}
+	\begin{tikzpicture}
 		\def\circleSize{0.8cm}
 		\def\layerdist{3.6}
-		
+
 		\def\mcOne{2}
 		\foreach\n in {0,...,\mcOne}{
 		 \FPeval{\ypos}{(\n - (\mcOne * 0.5)) * 2.2}
@@ -37,9 +39,9 @@
 		\FPeval{\ypos}{\mcThree + 1}
 		\node[draw,align=left] at (\circleSize*\layerdist * 0, \ypos) {Input};
 		\node[draw,text width=4cm, align=center] at (\circleSize*\layerdist *1.5, \ypos) {Hidden units};
-		\node[draw,align=left] at (\circleSize*\layerdist *3, \ypos) {Output};	
-	\end{tikzpicture}	
-	\caption{Multilayer neural network structure}	
+		\node[draw,align=left] at (\circleSize*\layerdist *3, \ypos) {Output};
+	\end{tikzpicture}
+	\caption{Multilayer neural network structure}
 	\end{center}
 	\end{figure}
 }

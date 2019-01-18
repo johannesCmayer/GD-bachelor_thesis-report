@@ -1,24 +1,26 @@
+% !TEX root = BachelorBookletMain.tex
+
 \newcommand{\neuronSum}[1][N]{
 	\sigma\Bigg(\sum_{i=1}^{#1}{\Big(\boldsymbol{w}_i \boldsymbol{x}_i\Big)} + b\Bigg)
 }
 
 \chapter{Background}
 \section{Neural networks}
-To give a better intuition for how neural networks are used in this project, a brief overview follows describing the components necessary to build a simple neural network.
+To give a better intuition for how neural networks work and how they are used in this project, a brief overview follows describing the components necessary to build a simple neural network.
 
 In brief a neural network is computational structure made up of multiple units called neurons.
 
 \subsection{Neuron}
-In its simple form a neuron can be defined as:
+A simple neuron can be defined as:
 \begin{equation}
 \begin{split}
 	N_{\boldsymbol w, b}(\boldsymbol{x}) & = \neuronSum \\
-	& = \sigma (\boldsymbol{w} \cdot \boldsymbol{x} + b)
+ 	& = \sigma (\boldsymbol{w} \cdot \boldsymbol{x} + b)
 \end{split}
 \end{equation}
 Where $\boldsymbol{x} \in \mathbb{R}^N$ is a vector containing all inputs, $ \boldsymbol{w} \in \mathbb{R}^N$ a vector containing the neurons weights, $b \in \mathbb{R}$ is the bias, $N \in \mathbb{Z}$ is the number of inputs and $\sigma$ is a nonlinear function refereed to as the activation function of the neuron. $\sigma$ is often set to be the rectified linear unit $ReLU(x) = \max(0, x)$.
 
-Intuitively a neuron performs a weighted sum over its inputs adds a bias and applies an activation function to the result to calculate the final output.
+Intuitively a neuron performs a weighted sum over its inputs adds a bias and applies an activation function to the result to calculate the final output. The bias can be thought of as a threshold, determining if $\sigma = ReLU$ how high the sum of inputs has to be, before the output becomes non 0.
 
 Normally we are interested in finding a specific weight vectors and biases for neurons, so that they can perform a desired computation.
 
@@ -37,6 +39,10 @@ As seen in figure \ref{multilayerNetworkGraph} a neural network work can be form
 
 \section{Differential calculus}
 Differential Calculus is an area of mathematics, that studies how a functions output changes with regard to tiny nudges to its inputs.
+\begin{centering}
+	ono
+\end{centering}
+
 
 \subsection{Univariate}
 The derivative says how much the output of a function increases, at a specific point. It is defined as:
