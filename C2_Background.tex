@@ -1,7 +1,7 @@
 % !TEX root = BachelorBookletMain.tex
 
-\newcommand{\neuronSum}[1][N]{
-	\sigma\Bigg(\sum_{i=1}^{#1}{\Big(\boldsymbol{w}_i \boldsymbol{x}_i\Big)} + b\Bigg)
+\newcommand{\neuronSum}[1][n]{
+	\sigma\Bigg(\sum_{i=1}^{#1}{\Big(w_i x_i\Big)} + b\Bigg)
 }
 
 \chapter{Background}
@@ -10,59 +10,94 @@ To give a better intuition for how neural networks work and how they are used in
 
 In brief a neural network is computational structure made up of multiple units called neurons.
 
+
 \subsection{Neuron}
 A simple neuron can be defined as:
+
 \begin{equation}
 \begin{split}
-	N_{\boldsymbol w, b}(\boldsymbol{x}) & = \neuronSum \\
- 	& = \sigma (\boldsymbol{w} \cdot \boldsymbol{x} + b)
+	N_{\bm w, b}(\bm{x}) & = \neuronSum[n] \\
+ 	& = \sigma (\bm{w} \cdot \bm{x} + b)
 \end{split}
 \end{equation}
-Where $\boldsymbol{x} \in \mathbb{R}^N$ is a vector containing all inputs, $ \boldsymbol{w} \in \mathbb{R}^N$ a vector containing the neurons weights, $b \in \mathbb{R}$ is the bias, $N \in \mathbb{Z}$ is the number of inputs and $\sigma$ is a nonlinear function refereed to as the activation function of the neuron. $\sigma$ is often set to be the rectified linear unit $ReLU(x) = \max(0, x)$.
 
-Intuitively a neuron performs a weighted sum over its inputs adds a bias and applies an activation function to the result to calculate the final output. The bias can be thought of as a threshold, determining if $\sigma = ReLU$ how high the sum of inputs has to be, before the output becomes non 0.
+Where $\bm{x} \in \mathbb{R}^n$ is a vector containing all inputs, $ \bm{w} \in \mathbb{R}^n$ a vector containing the neurons weights, $b \in \mathbb{R}$ is the bias, $n \in \mathbb{Z}$ is the number of inputs and $\sigma$ is a nonlinear function refereed to as the activation function of the neuron. $\sigma$ is often set to be the rectified linear unit $ReLU(x) = \max(0, x)$.
 
-Normally we are interested in finding a specific weight vectors and biases for neurons, so that they can perform a desired computation.
-
-$\sigma$ and the addition of $b$ are applied to each element of the vector.
-
-use
-Initialization
-Why is b a good idea; Threshhold function
+Intuitively a neuron performs a weighted sum over its inputs adds a bias and applies an activation function to the result to calculate the final output. The bias can be thought of as a threshold, determining---if $\sigma = ReLU$---how high the sum of inputs has to be, before the output becomes non 0. Figure \ref{neuronGraph} shows, how you can think of as a neuron having connections.
 
 \neuronGraph{p}{$\displaystyle{\neuronSum[3]}$}
 
-\multilayerNetworkGraph[p]
 
 \subsection{Multilayer network}
-As seen in figure \ref{multilayerNetworkGraph} a neural network work can be formed out if neurons, by first organizing multiple neurons into a layer and then connecting multiple layers together. To get a dense network, each neuron in a layer gets as inputs the outputs of all the neurons in the previous layer. In the first layer---which is also called the input layer---we simply set the outputvalues of the neurons to what we like to have as input to the network.
+As seen in figure \ref{multilayerNetworkGraph} a neural network work can be formed out if neurons, by first organizing multiple neurons into a layers and then connecting multiple layers together. To get a dense network, each neuron in a layer gets as inputs the outputs of all the neurons in the previous layer. In the first layer is used to provide the input to the network. We simply set the output values of the neurons to what we like to have as input to the network.
+
+\multilayerNetworkGraph[p]
+
+Normally in an implementations of a densely connected neural network the computer performs multiple matrix operations to compute the output to be more efficient. Equation \ref{networkMatrixMul} shows how to compute the values for the first hidden layer of the network in figure \ref{multilayerNetworkGraph} this way. The $\sigma$ is applied to each element of the matrix.
+
+\begin{equation}
+	Hidden_1(\bm{x}) = \sigma\Bigg{(}
+	\directlua{
+		dofile('Lua.lua')
+		print_matrix('w', 4, 3)
+		print_matrix('x', 3)
+		tex.print('+')
+		print_matrix('b', 4)
+	}
+	\Bigg{)}
+	\label{networkMatrixMul}
+\end{equation}
+
+
+\subsection{Training}
+Before we start training we need to set our weights and biases to some start values.
+The bias is usually initialized to 0 and the weights can be initialized to small random values if the network is small. More complicated initialization strategies are needed for the weights if your are dealing with a big network.
+
+Normally we are interested in finding specific weight vectors and biases for neurons that make the network perform some specific task like image classification, given some data.
+
+We might want to know if an image pictures a orange or an apple. We can use a network with one output neuron, where that neurons value should be one if we feed in a picture of an orange and zero if we feed in a picture of an apple. if we now feed in a picture, the network gives back some arbitrary numerical value that will only by chance predict the correct fruit. This is because the network is not trained yet.
+
+To train the network we first need to define a loss function. This function returns a numerical value, that represents how bad the network is. For images we may use the means square error function as shown in equation \ref{MSE}. There $x$ is the output of the network and $y$ is the output that we want.
+
+\begin{equation}
+	MSE(\bm{x}, \bm{y}) = \frac{1}{n}\sum_{i=1}^{n}{(\bm{x}_i - \bm{y}_i)^2}
+	\label{MSE}
+\end{equation}
+
+To train the network we need a dataset, that in this case an image, paired with the number one if the image depicts an orange and the number zero if the image depicts an apple.
+
+Now if we feed in an image into the network we can measure how bad the network is using the loss function. To improve the output of the network we train it by updating our weight and bias values corresponding to the negative gradient of the loss function with respect to the weights and biases using calculus.
+
 
 \section{Differential calculus}
 Differential Calculus is an area of mathematics, that studies how a functions output changes with regard to tiny nudges to its inputs.
-\begin{centering}
-	ono
-\end{centering}
 
 
 \subsection{Univariate}
 The derivative says how much the output of a function increases, at a specific point. It is defined as:
+
 \begin{equation}
 	\frac{df(x)}{dx} = \lim_{dx \to 0}\frac{f(x + dx) - f(x)}{dx}
 \end{equation}
-Intuitively this can be interpreted as the amount the output of the function changes when we increase the parameter to function by some tiny amount divided by how tiny that amount was. The $\lim_{dx \to 0}$ means, that we don't use a specific value for $dx$ but take the value the equation approaches when $dx$ approaches $0$, without $dx$ ever becomming $0$.
+
+Intuitively this can be interpreted as the amount the output of the function changes when we increase the parameter to function by some tiny amount divided by how tiny that amount was. The $\lim_{dx \to 0}$ means, that we don't use a specific value for $dx$ but take the value the equation approaches when $dx$ approaches $0$, without $dx$ ever becoming $0$.
 
 This means that the derivative can be used to find out how a function changes locally. If the derivative is positive and we increase the input to the function at the point the derivative was evaluated the output increases in size proportional to the magnitude of the derivative. The same logic applies when the derivative is negative.
 
+
 \subsection{Multivariate}
 The same can be applied to functions with multiple parameters:
+
 \begin{equation}
-	\frac{\partial f(x_1, x_2)}{\partial x_1} = \lim_{\partial x_1 \to 0}\frac{f(x_1, x_2 + \partial x_1) - f(x_1, x_2)}{\partial x_1}
-\end{equation}
-\begin{equation}
+\begin{split}
+	\frac{\partial f(x_1, x_2)}{\partial x_1} = \lim_{\partial x_1 \to 0}\frac{f(x_1 + \partial x_1, x_2) - f(x_1, x_2)}{\partial x_1} \\
 	\frac{\partial f(x_1, x_2)}{\partial x_2} = \lim_{\partial x_2 \to 0}\frac{f(x_1, x_2 + \partial x_2) - f(x_1, x_2)}{\partial x_2}
+\end{split}
 \end{equation}
+
 Here each equation defines as how much the output of the function changes locally when the corresponding input parameter to the function varies.
 The gradient of $f(x_1, x_2)$ is defined as:
+
 \begin{equation}
 \nabla f(x_1, x_2) =
 	\begin{bmatrix}
@@ -70,7 +105,9 @@ The gradient of $f(x_1, x_2)$ is defined as:
 	\frac{\partial f(x_1, x_2)}{\partial x_2}
 	\end{bmatrix}
 \end{equation}
+
 This means the gradient contains all the information, of how a function varies
+
 
 \subsection{Gradient decent}
 Neu
