@@ -29,7 +29,7 @@ Intuitively a neuron performs a weighted sum over its inputs adds a bias and app
 
 
 \subsection{Multilayer network}
-As seen in figure \ref{multilayerNetworkGraph} a neural network work can be formed out if neurons, by first organizing multiple neurons into a layers and then connecting multiple layers together. To get a dense network, each neuron in a layer gets as inputs the outputs of all the neurons in the previous layer. In the first layer is used to provide the input to the network. We simply set the output values of the neurons to what we like to have as input to the network.
+As seen in figure \ref{multilayerNetworkGraph} a neural network work can be formed out if neurons, by first organizing multiple neurons into a layers and then connecting multiple layers together. To get a dense network, each neuron in a layer gets as inputs the outputs of all the neurons in the previous layer. The first layer is used to provide input to the network. We simply set the output values of the neurons to what we like to have as input to the network. To get the output of the network, we read of what values the neurons in the final layer have after the network has been evaluated. The layers between the first and last layer are called hidden layers. This is because it is normally not necessary to inspect directly what values these neurons have.
 
 \multilayerNetworkGraph[p]
 
@@ -106,19 +106,15 @@ The gradient of $f(x_1, x_2)$ is defined as:
 	\end{bmatrix}
 \end{equation}
 
-This means the gradient contains all the information, of how a function varies
+This means the gradient contains all the information, of how a function varies with respect to its parameters.
+
+Calculating the gradient of the loss, gives us the information of how we should adjust our weights and biases to improve the loss i.e. the output of the network. Normally we scale the gradient by some learning rate $\eta \in \mathbb{R}$.
 
 
-\subsection{Gradient decent}
-Neu
+% \subsection{Backpropagation}
+% In practice neural networks are constructed as computation graphs. This means a the computations are defined by how edges connect to nodes, where the nodes correspond to operations to be performed.
+% Define computation graph, to enable reverse mode auto diff.
 
-\subsection{Chain rule}
-\subsection{What more?}
-
-
-\subsection{Backpropagation}
-In practice neural networks are constructed as computation graphs. This means a the computations are defined by how edges connect to nodes, where the nodes correspond to operations to be performed.
-Define computation graph, to enable reverse mode auto diff.
 
 \subsection{GQN Network}
 This work uses a simplefied implementation of the Generative Query Network \cite{gqn}.
