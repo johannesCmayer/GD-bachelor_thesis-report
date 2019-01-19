@@ -33,12 +33,11 @@ As seen in figure \ref{multilayerNetworkGraph} a neural network work can be form
 
 \multilayerNetworkGraph[p]
 
-Normally in an implementations of a densely connected neural network the computer performs multiple matrix operations to compute the output to be more efficient. Equation \ref{networkMatrixMul} shows how to compute the values for the first hidden layer of the network in figure \ref{multilayerNetworkGraph} this way. The $\sigma$ is applied to each element of the matrix.
+Normally in an implementations of a densely connected neural network the computer performs multiple matrix operations to compute the output to be more efficient. Equation \ref{networkMatrixMul} shows how to compute the values for the first hidden layer of the network in figure \ref{multilayerNetworkGraph} this way. The $\sigma$ is applied to each element of the vector.
 
 \begin{equation}
 	Hidden_1(\bm{x}) = \sigma\Bigg{(}
 	\directlua{
-		dofile('Lua.lua')
 		print_matrix('w', 4, 3)
 		print_matrix('x', 3)
 		tex.print('+')
@@ -116,10 +115,42 @@ Calculating the gradient of the loss, gives us the information of how we should 
 % Define computation graph, to enable reverse mode auto diff.
 
 
-\subsection{GQN Network}
-This work uses a simplefied implementation of the Generative Query Network \cite{gqn}.
+\section{GQN Network}
+\subsection{Definition}
+A Generative Query Network \cite{gqn} is a type of neural network architecture, that can learn how to render an image from a given viewpoint in an environment not seen during training, given only a handful of images of the environment.
 
-In this work a network the architecture of GQN differs from the implementation used in the original paper. Here I use multilayer perceptron models for encoder and decoder without random latent variables. This circumvents the necessity of having to use the evidence lower bound as an optimization target.
+\begin{figure}
+\centering
+\begin{tikzpicture}
+
+	\def\c{red!10!green!10!blue!80}
+
+	%\node [circle, fill=gray] (decoder) at (0,0) {};
+	%\node [rectangle, above=20, right=10, fill=\c] (encoder) at (decoder) {hello};
+	%\node [rectangle, fill=gray] (output) at (encoder) ++(1,0) {};
+
+	\draw
+		(0,0) node (A) {Encoder} --
+		+(1,1) node (B) {Decoder} --
+		++(0,1) node (B) {u} --
+		++(0,1) node (C) {Hel};
+
+	%\draw[help lines, step=0.5] (0,0) grid (2,4);
+	%\draw (decoder) to[out=180, in=0] (encoder);
+\end{tikzpicture}
+
+\caption{}
+\figsource{}
+\label{}
+
+\end{figure}
+
+
+
+\subsection{Usage}
+This work uses a simplified implementation of the Generative Query Network.
+
+In this work a network the architecture of GQN differs from the implementation used in the original paper. Here I use simple dense models for encoder and decoder that don't use random latent variables. This circumvents the necessity of having to use the evidence lower bound as an optimization target.
 
 This however prevents the network from taking into account the inputs given during inference to the same extent as in the original experiments described in the paper. The only meaningful considerations of the inputs of the network were found to be the coloring of the sky, floor and walls (when the latter view have the same color). In the original implementation the network can correctly infer more properties like object position, rotation and texture.
 

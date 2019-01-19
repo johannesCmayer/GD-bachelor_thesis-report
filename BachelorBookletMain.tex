@@ -1,6 +1,8 @@
 \documentclass[a4paper, twoside, 10pt]{report}
 
-
+\directlua{
+	require('Lua')
+}
 
 \input{Lib1_Graphs}
 
@@ -49,7 +51,6 @@
 \date{\today}
 
 \newcommand\blankpage{\null\thispagestyle{empty}\addtocounter{page}{0}\newpage}
-
 
 \pagestyle{fancyplain}
 \fancyfoot{}
@@ -102,24 +103,24 @@
 \pagenumbering{Roman}
 \begin{flushleft}
 \begin{spacing}{1.5}
-{\large
-Bachelor thesis booklet in the studies of GAME DESIGN \\
-%\vspace*{\fill}
-The work constitutes a technical design work piece \\
-\vspace*{\fill}
-{\Huge Shrouded Mirror} \\
-{\Large Neural Network Based Rendering \\ in Interactive Environments \\}
-\vspace*{\fill}
-\textit{Submitted by} \\
-Johannes C. Mayer, 553087 \\
-on \today \\
-\vspace*{1cm}
-\textit{First Examiner:} Prof. Thomas Bremer \\
-\textit{Second Examiner:} Prof. Susanne Brandhorst \\
-\vspace*{1cm}
-Hochschule f\"ur Technik und Wirtschaft Berlin \\
-Fachbereich Gestaltung und Kultur \\
-}
+	{\large
+		Bachelor thesis booklet in the studies of GAME DESIGN \\
+		%\vspace*{\fill}
+		The work constitutes a technical design work piece \\
+	\vspace*{\fill}
+		{\Huge Shrouded Mirror} \\
+		{\Large Neural Network Based Rendering \\ in Interactive Environments \\}
+	\vspace*{\fill}
+		\textit{Submitted by} \\
+		Johannes C. Mayer, 553087 \\
+		on \today \\
+	\vspace*{1cm}
+		\textit{First Examiner:} Prof. Thomas Bremer \\
+		\textit{Second Examiner:} Prof. Susanne Brandhorst \\
+	\vspace*{1cm}
+		Hochschule f\"ur Technik und Wirtschaft Berlin \\
+		Fachbereich Gestaltung und Kultur \\
+	}
 \end{spacing}
 \end{flushleft}
 
