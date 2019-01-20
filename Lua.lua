@@ -29,3 +29,37 @@ function print_matrix(name, rows, collums, environment)
   s = begining .. s .. ending
   tex.print(s)
 end
+
+function cimg(caption, img, tikz, tikzOptions, source, label, placement)
+  if not img then resize = true end
+
+  caption = caption or 'NO CAPTION'
+  img = img or 'images/Placeholder.png'
+  tikz = tikz or ''
+  tikzOptions = tikzOptions or ''
+  source = source or 'own graphic'
+  labelCmd = ''
+  if label then labelCmd = [[\label{]]..label..[[}]] end
+  placement = placement or 'ht'
+
+  resizeCmd=''
+  if resize then resizeCmd=[[\resizebox{5cm}{5cm}]] end
+  s = [[
+  	\begin{figure}[]]..placement..[[]
+  	\begin{center}]]
+    ..resizeCmd..[[{
+    	\begin{tikzpicture}[thick,>=stealth',]]..tikzOptions..[[]
+    		\node (img) at (0,0) {\includegraphics{]]..img..[[}};
+    		]]..tikz..[[
+    	\end{tikzpicture}
+    }
+  	\end{center}
+
+  	\caption{]]..caption..[[}
+  	\figsource{]]..source..[[}
+    ]]..labelCmd..[[
+
+  	\end{figure}
+    ]]
+    tex.print(s:gsub('\n', ' '))
+end

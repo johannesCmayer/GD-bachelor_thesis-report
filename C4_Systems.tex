@@ -1,27 +1,41 @@
 % !TEX root = BachelorBookletMain.tex
 
-\chapter{Systems}
+\chapter{Neural Network Systems}
 \section{Model}
-Model in python
+use keras functional API,
+simple dese network,
+structured like in \ref{GQNArchitectureGraph} except no latent variables $z$.
 
-\subsection{Network} \label{Network}
+\dl(cimg('image series of how the network evolved (show output of network)'))
 
 
-\subsection{Saving and loading}
-\section{Data Preprocessing}
+\subsection{Saving and loading of network}
+if no model autcreate new one,
+automatic naming,
+automatic version incrementing,
+auto lead newest version,
+save during traning
+
+
+\subsection{Data Preprocessing}
+load data from disk,
+normalizing data,
+concatenating,
+pair up img with coord,
+reconstructing dimentions
+
+
 \section{Inter process communication}
 UDP sending of player position to python
 
 Motion JPEG over UDP socket
 
+
 \section{Rendering}
 In Unity the stream is decoded and rendered using custom Cg shaders. These shaders merges the network output stream with objects in the environment that are tagged to be visible in the combined render.
+\dl(cimg('image with only network output'))
+\dl(cimg('image unity + network output'))
 
+Done by giving environment specific color, that is set to transparent, when unity render is layered over the network output.
+\dl(cimg('img of unity environment where you see eveything has keyout color'))
 Cull objects if hidden from camera pos in unity environment
-
-\section{Player interaction}
-\paragraph{Laser}
-player can shoot laser and destroy enemies
-
-\paragraph{Smoke balls}
-player can throw smoke balls which reveal invisible enemies and reveale the where the physical walls are in the smoke

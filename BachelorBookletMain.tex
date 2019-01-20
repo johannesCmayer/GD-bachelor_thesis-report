@@ -50,8 +50,9 @@
 \author{Johannes C. Mayer}
 \date{\today}
 
-\newcommand\blankpage{\null\thispagestyle{empty}\addtocounter{page}{0}\newpage}
-\newcommand\ledit[1]{{\color{red}\scriptsize{\Huge EDIT} WHEN DATA AVAILABLE: #1}}
+\newcommand{\blankpage}{\null\thispagestyle{empty}\addtocounter{page}{0}\newpage}
+\newcommand{\ledit}[1]{{\color{red}\scriptsize{\Huge EDIT} WHEN DATA AVAILABLE: #1}}
+\newcommand{\dl}[1]{\directlua{#1}}
 
 \pagestyle{fancyplain}
 \fancyfoot{}
@@ -136,7 +137,8 @@
 \include{C1_Introduction}
 \include{C2_Background}
 \include{C3_Workflow}
-\include{C4_Systems}
+\include{C3.5_MazeGameSystems}
+% \include{C4_Systems}
 \include{C5_FurtherWork}
 \include{C6_Reflection}
 \include{C7_Resources}
