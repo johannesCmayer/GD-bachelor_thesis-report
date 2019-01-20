@@ -23,7 +23,7 @@ A simple neuron can be defined as:
 
 Where $\bm{x} \in \mathbb{R}^n$ is a vector containing all inputs, $ \bm{w} \in \mathbb{R}^n$ a vector containing the neurons weights, $b \in \mathbb{R}$ is the bias, $n \in \mathbb{Z}$ is the number of inputs and $\sigma$ is a nonlinear function refereed to as the activation function of the neuron. $\sigma$ is often set to be the rectified linear unit $ReLU(x) = \max(0, x)$.
 
-Intuitively a neuron performs a weighted sum over its inputs adds a bias and applies an activation function to the result to calculate the final output. The bias can be thought of as a threshold, determining---if $\sigma = ReLU$---how high the sum of inputs has to be, before the output becomes non 0. Figure \ref{neuronGraph} shows, how you can think of as a neuron having connections.
+Intuitively a neuron performs a weighted sum over its inputs adds a bias and applies an activation function to the result to calculate the final output. The bias can be thought of as a threshold, determining---if $\sigma = ReLU$---how high the sum of inputs has to be, before the output becomes non 0. Figure \ref{neuronGraph} shows, how we can think of as a neuron having connections.
 
 \neuronGraph{p}{$\displaystyle{\neuronSum[3]}$}
 
@@ -50,7 +50,7 @@ Normally in an implementations of a densely connected neural network the compute
 
 \subsection{Training}
 Before we start training we need to set our weights and biases to some start values.
-The bias is usually initialized to 0 and the weights can be initialized to small random values if the network is small. More complicated initialization strategies are needed for the weights if your are dealing with a big network.
+The bias is usually initialized to 0 and the weights can be initialized to small random values if the network is small. More complicated initialization strategies are needed for the weights if we are dealing with a big network.
 
 Normally we are interested in finding specific weight vectors and biases for neurons that make the network perform some specific task like image classification, given some data.
 
@@ -119,9 +119,9 @@ Calculating the gradient of the loss, gives us the information of how we should 
 \subsection{Definition}
 A Generative Query Network \cite{gqn} is a type of neural network architecture, that can learn how to render an image from a given viewpoint in an environment not seen during training, given only a handful of images of the environment. The closer the unseen environment is to environments seen during training---in terms of objects and their properties---the better the network is generally expected to perform on the unseen environment. To some extend the network is able to correctly render unseen objects as shown in \cite{gqn}.
 
-The network architecture is shown in figure \ref{GQNArchitectureGraph}, where $I_i$ denotes an image of an environment and $C_i$ the position and rotation where the image was taken. $\bigcup$ stands for concatenations, $C_q$ is the coordinate from which the network should render an Image, $z$ is a vector of latent variables, $y$ is the ground truth image of what a render form $C_q$ looks like.
+The network architecture is shown in figure \ref{GQNArchitectureGraph}, where $I_i$ denotes an image of an environment and $C_i$ the position and rotation where the image was taken. The $\bigcup$ here means concatenation. $R_i$ is an encoded representation of the environment as a tensor. These tensors are summed up element wise. $C_q$ is the coordinate from which the network should render an Image, $z$ is a vector of latent variables and $I_y$ is the ground truth image of what a render form $C_q$ looks like. The encoder and decoder are both neural networks.
 
-To train the network it is fed many image-coordinate pairs, from different environments.
+To train the network we feed many image-coordinate pairs, from different environments, compute the gradient of the loss and update the network parameters accordingly. All $(I_i, C_i)$ and $(I_y, C_q)$ have to be drawn from the same environment in one evaluation of the network. If there are multiple $(I_i, C_i)$ input pairs, the same encoder network is used to encode each of them.
 
 \GQNArchitectureGraph
 
