@@ -6,7 +6,7 @@ use keras functional API,
 simple dese network,
 structured like in \ref{GQNArchitectureGraph} except no latent variables $z$.
 
-\dl(cimg('image series of how the network evolved (show output of network)'))
+\dl{cimg('image series of how the network evolved, show output of network')}
 
 
 \subsection{Saving and loading of network}
@@ -33,9 +33,9 @@ Motion JPEG over UDP socket
 
 \section{Rendering}
 In Unity the stream is decoded and rendered using custom Cg shaders. These shaders merges the network output stream with objects in the environment that are tagged to be visible in the combined render.
-\dl(cimg('image with only network output'))
-\dl(cimg('image unity + network output'))
+\dl{cimg('image with only network output')}
+\dl{cimg('image unity + network output')}
 
 Done by giving environment specific color, that is set to transparent, when unity render is layered over the network output.
-\dl(cimg('img of unity environment where you see eveything has keyout color'))
+\dl{cimg('img of unity environment where you see eveything has keyout color')}
 Cull objects if hidden from camera pos in unity environment
