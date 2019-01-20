@@ -2,9 +2,13 @@
 
 \chapter{Reflection}
 \section{Project}
-The project has many flaws, list what did not work and how to remedy it.
+The original idea of integrating a GQN into an interactive experience was only partly successful. The time needed to get accustomed with the intricacies of the methods required to use the GQN to its full potential was greater that the time available for research in this project. Only a simplified GQN architecture could be utilized in an interactive prototype.
+
+The project greatly improved my understanding about how neural networks function at the core. The model in the project uses synthetic data. This enabled me to learn how to construct a complete pipeline for an unsupervised machine learning system. I implemented data generated and preprocessing, created a simplified version of the GQN architecture and improved my intuitions about how to train neural networks.
 
 \section{Workflow Evaluation}
-Good, but more early on more strucktured exploration (especially automatic) for neural network parameter tweaks.
+When working with neural networks it is often necessary to try out different architectures and parameters for a model that should perform a specific task. For this it is very useful to have programmatic utilities, that automatically search the space of parameters for some time and then returns the best. Because I realized to late into the project how useful these utilities are. The technical dept I collected this far into the project was to high and remaining time of the project to short, so that I decided that the implementation would not be worth the effort.
 
-Dont scale up model to quickly -> higher res, rotation on x axis. this makes itteration time slower (longor training) and lead to many other problems cropping up, that force patchy solutions.
+Another mistake I made, was to make the model too soon too complex. Very early on I started to train the model on data of a camera rotating on multiple axis that produces 64x64---instead of 32x32---resolution images as training data. Both these things significantly increased the time necessary to train the network to reasonable level. This made iteration time slow. Besides the training time issue the implementation of parameterized capturing and higher resolution output took too soon an unnecessarily large chunk of time out of my schedule, time that would have been better spend improving the existing systems.
+
+Furthermore I sunk some time into researching how to train neural network models on multiple machines. After 1--2 days of research I realized, that the endeavor is outside the scope of this project.
