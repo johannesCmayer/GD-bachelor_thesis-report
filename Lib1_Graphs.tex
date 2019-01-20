@@ -87,3 +87,60 @@
 
 	\end{figure}
 }
+
+\newcommand{\GQNArchitectureGraph}{
+\begin{figure}
+\centering
+\begin{tikzpicture}[->, thick, >=stealth', scale=0.3]
+
+	\def\cR{red!10!green!10!white}
+	\def\cNet{blue!20!white}
+	\def\cOp{red!20!white}
+	\def\cVar{orange!20!white}
+	\def\cOut{violet!20!white}
+
+	\path
+		(0,0) node[draw, fill=\cVar] (oImage) {$I_1$}
+		++(5,5) node[circle, draw, fill=\cOp] (append) {$\bigcup$}
+		+(5,-5) node[draw, fill=\cVar] (coordinate) {$C_1$}
+		++(0,5) node[draw, fill=\cNet] (encoder) {Encoder}
+		++(5,5) node [draw, fill=\cR] (r_1) {$R_1$}
+		++(0,5) node [draw, fill=\cR] (r_2) {$R_2$}
+		++(0,5) node [draw, fill=\cR] (r_3) {$R_3$}
+		(r_1) ++(5,0) node [circle, draw, fill=\cOp] (add) {$\bm+$}
+		++(5,0) node [draw, fill=\cR] (r) {$R$}
+		++(8,0) node [draw, fill=\cNet] (decoder) {Decoder}
+		+(2.5, 5) node [draw, fill=\cVar] (z) {$z$}
+		+(-2.5, 5) node [draw, fill=\cVar] (querryCoord) {$C_q$}
+		++(0, -5) node [draw, fill=\cOut] (output) {Predicted image}
+		++(0, -5) node [draw, fill=\cOut] (loss) {Loss}
+		+(-7, 0) node [draw, fill=\cVar] (label) {$y$}
+		;
+
+	\draw (coordinate) |- (append)
+						(oImage) |- (append) -| (encoder);
+	\draw (encoder) |- (r_1);
+	\foreach \n in {r_2, r_3}
+		\draw (\n) ++(-5,0) node[draw, fill=\cNet] (dot_\n) {$\cdots$} -- (\n)
+					(\n) -| (add);
+	\draw (encoder) edge[bend left, dashed] (dot_r_2)
+				(encoder) edge[bend left, dashed] node[left=3mm, draw, fill=black!10!white] {reuse} (dot_r_3);
+	\draw (encoder) node[pos=0.5, sloped, left] {reuse} (dot_r_3);
+	\draw (r_1) edge (add)
+				(add) edge (r)
+				(r) edge (decoder)
+				(decoder) edge (output)
+				(output) edge (loss)
+	 			(querryCoord) edge (decoder)
+	 			(z) edge (decoder)
+				(label) edge (loss)
+				;
+
+\end{tikzpicture}
+
+\caption{GQN architecture}
+\figsource{own graphic}
+\label{GQNArchitectureGraph}
+
+\end{figure}
+}

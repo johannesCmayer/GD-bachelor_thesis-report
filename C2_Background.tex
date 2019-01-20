@@ -117,34 +117,13 @@ Calculating the gradient of the loss, gives us the information of how we should 
 
 \section{GQN Network}
 \subsection{Definition}
-A Generative Query Network \cite{gqn} is a type of neural network architecture, that can learn how to render an image from a given viewpoint in an environment not seen during training, given only a handful of images of the environment.
+A Generative Query Network \cite{gqn} is a type of neural network architecture, that can learn how to render an image from a given viewpoint in an environment not seen during training, given only a handful of images of the environment. The closer the unseen environment is to environments seen during training---in terms of objects and their properties---the better the network is generally expected to perform on the unseen environment. To some extend the network is able to correctly render unseen objects as shown in \cite{gqn}.
 
-\begin{figure}
-\centering
-\begin{tikzpicture}
+The network architecture is shown in figure \ref{GQNArchitectureGraph}, where $I_i$ denotes an image of an environment and $C_i$ the position and rotation where the image was taken. $\bigcup$ stands for concatenations, $C_q$ is the coordinate from which the network should render an Image, $z$ is a vector of latent variables, $y$ is the ground truth image of what a render form $C_q$ looks like.
 
-	\def\c{red!10!green!10!blue!80}
+To train the network it is fed many image-coordinate pairs, from different environments.
 
-	%\node [circle, fill=gray] (decoder) at (0,0) {};
-	%\node [rectangle, above=20, right=10, fill=\c] (encoder) at (decoder) {hello};
-	%\node [rectangle, fill=gray] (output) at (encoder) ++(1,0) {};
-
-	\draw
-		(0,0) node (A) {Encoder} --
-		+(1,1) node (B) {Decoder} --
-		++(0,1) node (B) {u} --
-		++(0,1) node (C) {Hel};
-
-	%\draw[help lines, step=0.5] (0,0) grid (2,4);
-	%\draw (decoder) to[out=180, in=0] (encoder);
-\end{tikzpicture}
-
-\caption{}
-\figsource{}
-\label{}
-
-\end{figure}
-
+\GQNArchitectureGraph
 
 
 \subsection{Usage}
