@@ -8,7 +8,7 @@
 \section{Neural networks}
 To give a better intuition for how neural networks work and how they are used in this project, a brief overview follows describing the components necessary to build a simple neural network.
 
-In brief a neural network is computational structure made up of multiple units called neurons.
+In brief a neural network is computational structure made up of multiple units called neurons that can adapt their output based on data.
 
 
 \subsection{Neuron}
@@ -50,7 +50,7 @@ Normally in an implementations of a densely connected neural network the compute
 
 \subsection{Training}
 Before we start training we need to set our weights and biases to some start values.
-The bias is usually initialized to 0 and the weights can be initialized to small random values if the network is small. More complicated initialization strategies are needed for the weights if we are dealing with a big network, see \cite{Glorot2010-kn}.
+The bias is usually initialized to 0 and the weights can be initialized to small random values if the network is small. More complicated initialization strategies are needed for the weights if we are dealing with a big network (\cite{Glorot2010-kn,Ioffe2015-eh}).
 
 Normally we are interested in finding specific weight vectors and biases for neurons that make the network perform some specific task like image classification, given some data.
 
@@ -117,7 +117,7 @@ Calculating the gradient of the loss, gives us the information of how we should 
 
 \section{GQN Network}\label{BackgroundGQN}
 \subsection{Definition}
-A Generative Query Network \cite{gqn} is a type of neural network architecture, that can learn how to render an image from a given viewpoint in an environment not seen during training, given only a handful of images of the environment. The closer the unseen environment is to environments seen during training---in terms of objects and their properties---the better the network is generally expected to perform on the unseen environment. To some extend the network is able to correctly render unseen objects as shown in \cite{gqn}.
+A Generative Query Network (\cite{gqn}) is a type of neural network architecture, that can learn how to render an image from a given viewpoint in an environment\footnote{Environment here refers to a scene that contains certain objects---like walls and spheres---arrangement in a certain way.} not seen during training, given only a handful of images of the environment. The closer the unseen environment is to environments seen during training---in terms of objects and their properties---the better the network is generally expected to perform on the unseen environment. To some extend the network is able to correctly render unseen objects as shown by \cite{gqn}.
 
 The network architecture is shown in figure \ref{GQNArchitectureGraph}, where $I_i$ denotes an image of an environment and $C_i$ the position and rotation where the image was taken. The $\bigcup$ here means concatenation. $R_i$ is an encoded representation of the environment as a tensor. These tensors are summed up element wise. $C_q$ is the coordinate from which the network should render an Image, $z$ is a vector of latent variables and $I_y$ is the ground truth image of what a render form $C_q$ looks like. The encoder and decoder are both neural networks.
 
