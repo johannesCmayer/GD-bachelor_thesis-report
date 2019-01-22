@@ -2,7 +2,7 @@
 
 \chapter{Neural Network Systems}
 \section{Model}
-{To create the neural network model used in this project the Kears funtional API is used. Keas is the official frontend to Tensorflow and simplifies the creation of neural networks. With the functional API predefined callable class instances---which represent layers---can be used to define model architectures. For this a class of a layer type is set up and called with the input to the layer. This then returns the output\footnote{The Keras classes don't execute statements immediately, but construct a computation graph for later execution.} of the layer. The outputs can now be feed into another layer. After the model has been described in this manner, Keras can receive optimization parameters e.g. the loss function and compile the executable computation graph.\todo{is this section nessesary, or at the right place?}}
+To create the neural network model used in this project the Kears functional API is used. Keras is the official front end to Tensorflow and simplifies the creation of neural networks. With the functional API predefined callable class instances---which represent layers---can be used to define model architectures. For this a class of a layer type is set up and called with the input to the layer. This then returns the output\footnote{The Keras classes don't execute statements immediately, but construct a computation graph for later execution.} of the layer. The outputs can now be feed into another layer. After the model has been described in this manner, Keras can receive optimization parameters e.g. the loss function and compile the executable computation graph.\todo{is this section necessary, or at the right place?}
 
 The model created corresponds to the model described in section \ref{BackgroundGQN}, with the exception that no latent variables $z$ are used. As encoder and decoder dense networks are used.
 
@@ -14,7 +14,7 @@ To make it easier to identify and reuse models a simple versioning system has be
 
 If request is received to load a specific model, an automatic search is performed for the newest model of that id, which is then loaded instead. The versioning of a model is set up properly based on the version of the model that is currently trained.
 
-Keras is used to automatically save the model during training in intervals, preventing total data loss on a system failure.
+Keras is used to automatically save the model during training in intervals, preventing total data loss in case of a critical system failure.
 
 
 \subsection{Data Preprocessing}
@@ -22,15 +22,15 @@ First the data is loaded from from disk. Then the data points are normalized. Th
 
 
 \section[IPC]{Inter process communication}
-Because Python runs outside the unity environment we need a way to send the network output to Unity. This is done by using a local UDP socket to send the JPEG images to a listening UDP socket in Unity. Because UDP is a connectionless protocol and doest give any guaranties that the send data will be received it is a very fast way to send the data. The chance of data getting lost on a local server is very slim and because we are sending a continuous stream we don't care if an image is lost, because we will receive a new one in a few milliseconds.
+Because Python runs outside the Unity environment we need a way to send the network output to Unity. This is done by using a local UDP socket to send the JPEG images to a listening UDP socket in Unity. Because UDP is a connectionless protocol and doest give any guaranties that the send data will be received it is a very fast way to send the data. The chance of data getting lost on a local server is very slim and because we are sending a continuous stream we don't care if an image is lost, because we will receive a new one in a few milliseconds.
 
 
-\section{Rendering}
-Now the data received by the Unity UDP socket gets loaded into a texture.
-In Unity the stream is decoded and rendered using custom Cg shaders. These shaders merges the network output stream with objects in the environment that are tagged to be visible in the combined render.
+\section{Rendering}\label{rendering}
+Now the data received by the Unity UDP socket gets loaded into a texture. This texture is then rendered to screen. Because our simplified model is unable to render nonstatic objects we need to merge the network output with rendered output from a Unity camera, if we want to use such objects. For this we change the material of objects we don't want to see in the merged output to an unlit material. This can automatically be done when Unity enters play mode using a script that filters objects based on their layer.
+
+Now we render a Unity camera and bit blit the image into a texture using a custom shader that sets all pixels of a given color to be transparent. The color needs to be set to the color of the unlit material we assigned to the objects we want to hide. Then we apply a pixelation shader to the image to reduce it to the same resolution as the network output. Finally we blit the pixelated version onto the screen over the network rendered output.
+
 \dl{cimg('image with only network output')}
-\dl{cimg('image unity + network output')}
+\dl{cimg('image Unity + network output')}
 
-Done by giving environment specific color, that is set to transparent, when unity render is layered over the network output.
-\dl{cimg('img of unity environment where you see eveything has keyout color')}
-Cull objects if hidden from camera pos in unity environment
+\dl{cimg('img of Unity environment where you see eveything has keyout color')}

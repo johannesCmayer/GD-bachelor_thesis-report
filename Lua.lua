@@ -30,7 +30,7 @@ function print_matrix(name, rows, collums, environment)
   tex.print(s)
 end
 
-function cimg(caption, img, tikz, tikzOptions, source, label, placement)
+function cimg(caption, label, img, source, placement, tikz, tikzOptions)
   if not img then resize = true end
 
   caption = caption or 'NO CAPTION'

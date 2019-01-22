@@ -1,18 +1,17 @@
 % !TEX root = BachelorBookletMain.tex
 
 \chapter{Workflow}
-The first step was to create a working implementation of neural network, that is able to learn
-out of what iteration flows was workflow composed \\
-Research, Implementation, Variation
+Beside the iterative prototype workflow described below
+
+As for implementing different systems needed for the prototype At a higher level I tried to follow the pattern of starting to researching a single component\footnote{such as the Kears functional API, UDP sockets, etc.} needed for the project. After enough information had been gathered I immediately tried to implement or improve the corresponding component.
 
 
 \section{Prototypes}
-Multiple protoypes explored:
+Multiple protoypes explored: simple to complex
 
 
 \subsection{Functional}
-prototype is used to develop the systems, especially for the neural net,
-is able to learn from itputs what the skycolor is.
+The first step in the project was to create a simple implementation of the rendering neural network. This first prototype should create a foundation that future prototypes could build upon. In this prototype the entire data generation- and preprocessing pipeline as well as the neural network model where implemented and evaluated. For this first prototype a small level with checkerboard textures and variable sky and wall colors between environments.\todo{make a distinction between environment and level everywhere in the document, where environment is a variation of a level}
 
 \dl{cimg('img of simple checker beard room with one sky color')}
 \dl{cimg('another sky color')}
