@@ -1,20 +1,24 @@
 % !TEX root = BachelorBookletMain.tex
 
 \chapter{Further work}
-In this section possible further applications based on the found data is discussed.
+This chapter presents possible future directions of how the project can be expanded upon.
 
-\section{Other directions with current state}
-\subsection{Multiplayer Game}
-2 Players are task to take observations of an environment that is rendered within the unity engine in a limited time. These observations  are now used as training data for a GQN. After training both player have to fight each other in this environment using the rendered output of the GQN.
 
-\subsection{Merge output of multiple models}
-\subsection{Blending of internal network state}
-Lerp some parameters to network to create effect.
+\section{Interactive data generation}
+One additional layer of interactivity could be created by giving the player control over how the network is trains, specifically controlling the generation of the training data. One way to achieve this is to allow the player to traverse the unity environment and take screenshots of it with a keypress \footnote{or alternatively we could record a stream of what the player sees each moment}. The captured images are then used to train a neural network. After training the player has to fulfill some task in the environment, but now he has to use the output of the network he trained to navigate the environment.
 
-\section{Expand GQN capability}
-GQN hard so not very good implementation. Variational metods, random ratent variables. Therefore only MLP.
+This could be used to create a competitive multiplayer game where both players first have to train a network and then use their network to beat the other player at some task.
+
+
+\section{Blending of internal network state}
+One way to make the output of the neural network more interesting, is by parameterizing the internal learned parameters. During training they would not have be variable, but after training the parameters can then be varied to morph the output of the neural network. This morphing might be dependent on some dynamic gameplay values. For example, if the player shoots the laser the morphing could be set to hight value and then gradually lerp back.
+
+
+\section{Model improvements}
+To enable more prototypes, the capability of the GQN network should be expanded so that it is as capable as the original implementation. The data generation process and preprocessing are capable of supplying such an implementation with the required data. This means that only the architecture of the model needs to be updated.
+
+After this update the network would also be able to directly render nonstatic objects. To capture the movement of objects, each frame a new observation from all observation points needs to be send to the encoder to update the environment representation, that is then used to render the output.
+
 
 \subsection{Generative model for modeling environment}
-\subsection{Implement original GQN}
-\subsection{Implement environment time step prediction}
-\section{Expanded GQN directions}
+The player has to manually update the inputs to the GQN. For this he places some object in the environment, where the observations should be taken. To create more gameplay depth, the number of possible observations that can be taken per level and the total number of active observations should be limited in some way. This forces the player to strategize about when and where to take observations.

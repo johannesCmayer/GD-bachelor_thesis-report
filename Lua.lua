@@ -39,7 +39,7 @@ function cimg(caption, img, tikz, tikzOptions, source, label, placement)
   tikzOptions = tikzOptions or ''
   source = source or 'own graphic'
   labelCmd = ''
-  if label then labelCmd = [[\label{]]..label..[[}]] end
+  if label then labelCmd = '\\label{'..label..'}' end
   placement = placement or 'ht'
 
   resizeCmd=''

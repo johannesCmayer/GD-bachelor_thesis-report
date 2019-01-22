@@ -12,28 +12,40 @@
 \usepackage{graphicx}
 \usepackage{amsmath, amsfonts, amssymb}
 \usepackage[ddmmyyyy]{datetime}
-\renewcommand{\dateseparator}{.}
 \usepackage{setspace}
 \usepackage{titlesec}
-\usepackage{tikz}
-\usetikzlibrary{calc,arrows,shapes,snakes,automata,backgrounds,petri}
 \usepackage[margin=5cm]{geometry}
 \usepackage{makecell}
 \usepackage[english]{babel}
 \usepackage{wrapfig}
 \usepackage{ragged2e}
+\usepackage[]{todonotes}
+% drawing
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows,shapes,snakes,automata,backgrounds,petri}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.16}
 \usepackage{pgffor}
+
 \usepackage{fp}
 \usepackage{luacode}
 \usepackage{bm}
-
+% font
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{luainputenc}
 \usepackage{avant}
 \renewcommand{\familydefault}{\sfdefault}
+% citing
+%\usepackage[round]{natbib}
+%\bibliographystyle{plainnat}
 
+\usepackage[
+	backend=biber,
+	style=alphabetic,
+	sorting=ynt
+]{biblatex}
+\addbibresource{BachelorBooklet.bib}
+%\bibliographystyle{plain}
 
 \setstretch{1.3}
 \setlength{\parskip}{1em}
@@ -45,6 +57,7 @@
 \titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 
 \AtEndDocument{\cleardoublepage}
+\AtBeginDocument{\renewcommand{\dateseparator}{.}}
 
 \title{Bachelor thesis booklet}
 \author{Johannes C. Mayer}
@@ -126,6 +139,8 @@
 \end{spacing}
 \end{flushleft}
 
+\listoftodos
+
 \include{Pre1_Expose}
 
 \tableofcontents
@@ -145,8 +160,7 @@
 \include{C7_Resources}
 
 
-\bibliographystyle{plain}
-\bibliography{BachelorBooklet}
+\printbibliography
 
 \listoffigures
 

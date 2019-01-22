@@ -2,23 +2,23 @@
 
 \chapter{Neural Network Systems}
 \section{Model}
-use keras functional API,
-simple dese network,
-structured like in \ref{GQNArchitectureGraph} except no latent variables $z$.
+To create the neural network model used in this project the Kears funtional API is used. Keas is the official frontend to Tensorflow and simplifies the creation of neural networks. With the functional API predefined callable class instances---which represent layers---can be used to define model architectures. For this a class of a layer type is set up and called with the input to the layer. This then returns the output\footnote{The Keras classes don't execute statements immediately, but construct a computation graph for later execution.} of the layer. The outputs can now be feed into another layer. After the model has been described in this manner, Keras can receive optimization parameters e.g. the loss function and compile the executable computation graph.\todo{is this nessesary?}
+
+The model created corresponds to the model described in section \ref{BackgroundGQN}, with the exception that no latent variables $z$ are used. As encoder and decoder dense networks are used.
 
 \dl{cimg('image series of how the network evolved, show output of network')}
 
 
 \subsection{Saving and loading of network}
-if no model autcreate new one,
-automatic naming,
-automatic version incrementing,
-auto lead newest version,
-save during traning
+To make it easier to identify and reuse models a simple versioning system has been developed. If no specific model is specified to be used a new one of the specified architecture is created. The model is given a unique name consistent of the training date, a randomly generated human personal name for quick identification, a random numerical id and a version number.
+
+If request is received to load a specific model, an automatic search is performed for the newest model of that id, which is then loaded instead. The versioning of a model is set up properly based on the version of the model that is currently trained.
+
+Keras is used to automatically save the model during training in intervals, preventing total data loss on a system failure.
 
 
 \subsection{Data Preprocessing}
-load data from disk,
+First the data is loaded from from disk. Then the data points are normalized. This means that we make all inputs of the data have a range between zero and one. This is required\footnote{There also exist alternative methods like batch normalization \cite{Ioffe2015-eh}.} to make the network train efficiently.
 normalizing data,
 concatenating,
 pair up img with coord,
