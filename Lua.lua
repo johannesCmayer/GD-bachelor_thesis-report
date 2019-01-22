@@ -63,3 +63,22 @@ function cimg(caption, img, tikz, tikzOptions, source, label, placement)
     ]]
     tex.print(s:gsub('\n', ' '))
 end
+
+function python_config()
+  local f = io.open('files/pythonPackages.txt')
+
+  tex.print([===[\begin{tabular}[| r | l || r | l |]
+                 \hline]===])
+  i = 0
+  for line in io.lines(f) do
+    local p = line:gsub('\n', ' ')
+    p = p:gsub('%s+', ' & ')
+    i = i + 1
+    if i % 2 == 0 and i ~= 0 then
+      p = p:gsub(1, -3)..[[\\ ]]
+    end
+    tex.print(p)
+  end
+  tex.print([[\hline
+              \end{tabular}]])
+end
