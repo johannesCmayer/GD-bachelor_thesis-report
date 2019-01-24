@@ -1,6 +1,19 @@
 % !TEX root = BachelorBookletMain.tex
 
 \chapter{Neural Network Systems}
+\section{Data generation}
+Use unity camera to make screenshots to texture,
+batch capture for efficiency
+create list of how many pictures to capture of each specified resolution
+save to file, automatic directory organization,
+variable resoluiot
+variable camera axis rotations
+capture area specification
+capture are environment specification
+
+\dl{cimg('data generation process')}
+
+
 \section{Model}
 To create the neural network model used in this project the Kears functional API is used. Keras is the official front end to Tensorflow and simplifies the creation of neural networks. With the functional API predefined callable class instances---which represent layers---can be used to define model architectures. For this a class of a layer type is set up and called with the input to the layer. This then returns the output\footnote{The Keras classes don't execute statements immediately, but construct a computation graph for later execution.} of the layer. The outputs can now be feed into another layer. After the model has been described in this manner, Keras can receive optimization parameters e.g. the loss function and compile the executable computation graph.\todo{is this section necessary, or at the right place?}
 
