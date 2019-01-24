@@ -4,7 +4,7 @@
 \section{Model}
 To create the neural network model used in this project the Kears functional API is used. Keras is the official front end to Tensorflow and simplifies the creation of neural networks. With the functional API predefined callable class instances---which represent layers---can be used to define model architectures. For this a class of a layer type is set up and called with the input to the layer. This then returns the output\footnote{The Keras classes don't execute statements immediately, but construct a computation graph for later execution.} of the layer. The outputs can now be feed into another layer. After the model has been described in this manner, Keras can receive optimization parameters e.g. the loss function and compile the executable computation graph.\todo{is this section necessary, or at the right place?}
 
-The model created corresponds to the model described in section \ref{BackgroundGQN}, with the exception that no latent variables $z$ are used. As encoder and decoder dense networks are used.
+The model created corresponds to the model described in \cref{BackgroundGQN}, with the exception that no latent variables $z$ are used. As encoder and decoder dense networks are used.
 
 \dl{cimg('image series of how the network evolved, show output of network')}
 
@@ -26,9 +26,14 @@ Because Python runs outside the Unity environment we need a way to send the netw
 
 
 \section{Rendering}\label{rendering}
-Now the data received by the Unity UDP socket gets loaded into a texture. This texture is then rendered to screen. Because our simplified model is unable to render nonstatic objects we need to merge the network output with rendered output from a Unity camera, if we want to use such objects. For this we change the material of objects we don't want to see in the merged output to an unlit material. This can automatically be done when Unity enters play mode using a script that filters objects based on their layer.
+Now the data received by the Unity UDP socket gets loaded into a texture. This texture is then rendered to screen. Because our simplified model is unable to render nonstatic objects we need to merge the network output with rendered output from a Unity camera, if we want to use such objects. For this we change the material of objects we don't want to see in the merged output to an unlit material of a specific color, referred from here on as the key-out color. This can automatically be done when Unity enters play mode using a script that filters objects based on their layer.
 
-Now we render a Unity camera and bit blit the image into a texture using a custom shader that sets all pixels of a given color to be transparent. The color needs to be set to the color of the unlit material we assigned to the objects we want to hide. Then we apply a pixelation shader to the image to reduce it to the same resolution as the network output. Finally we blit the pixelated version onto the screen over the network rendered output.
+Now we render a Unity camera and bit blit the image into a texture using a custom shader that sets all pixels of that are equal to the key-out color to be transparent. Then we apply a pixelation shader to the image to reduce it to the same resolution as the network output. Finally we blit the pixelated version onto the screen over the network rendered output.
+
+\subsection{Smoke ball rendering}\label{SmokeBallRendering}
+The ability of smoke balls to reveal structural environment objects is created by having the smoke be additive particles. When the additive particles are rendered in front of objects that have the key-out color material, the color gets offset slightly so that it is no longer keyed out by the shader. The objects behind the smoke appear to the player as flat shaded surfaces with the key-out material.
+
+Smoke balls can also be used to reveal the Invisible champer that is described in \cref{InvisibleChamper}. This works because the champer is keyed out by the same shader that keys out the environment. In unity the champer is not transparent but opaque. This means that if the champer is in front of smoke, he overwrites the smoke by getting his pixels in the image set to transparent. The player then sees a cutout in the smoke where only the network output is visible in the shape of the champer.
 
 \dl{cimg('image with only network output')}
 \dl{cimg('image Unity + network output')}

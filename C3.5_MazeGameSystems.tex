@@ -1,29 +1,40 @@
 % !TEX root = BachelorBookletMain.tex
 
-\chapter{Maze Game Systems}
-The maze game is main Prototype
-systems section describes the systems for this prototye
+\chapter{Maze Game Systems}\label{MazeGameSystems}
+ In this Prototype the player has to navigate though a maze. He has to use the network output to navigate. There are several enemy types that have to be avoided or destroyed. Multiple objects have to be collected before the exit is unlocked.
 
-\section{resonance audio}
-used to facilitate player orientation
-each important object has distinkt sound
-play navigates the level, listening for the signal of checkpoints and the final goal
+\section{Audio}
+In this project I use the Resonance Audio plug-in to simulate spacial sound. This facilitates player orientation. All important objects and events such as enemies and checkpoints emit a unique sound, that helps to spatially locate and identify them. A doppler effect is used on all audiosources, so the player perceives how entities are moving relative to him.
 
 \dl{cimg('goal gets unlocked')}
 
 
-\subsection{sound spectrum analysing materials}
-uses teh spectrum analysing mat
+\section{Sound spectrum analyzing materials}
+I created a simple sound spectrum analysing script (SSAS), that when attached to an object automatically varies the intensity of the objects material color based on the current spectrum of the objects audio source. Parameters are exposed to define ranges for valid color intensities and to set how the spectrum should be filtered before its intensity is determined.
 
 \dl{cimg('img sonar cube bright')}
 \dl{cimg('img sonar cube not bright')}
 
-\subsection{Invisible Enemies}
-uses spectrum analysing mat
-put this in systems Probably
-make a distinct sound so player can hear them
+
+\section{Checkpoints}
+To beat a level the player has to collect all checkpoints. They are visualized as green rectangular cuboids that vary their material using the SSAS. Periodically a checkpoint emits a high pitched, slowly decaying ping sound. Because the sound is specialized with Resonance Audio, the player can use this audio signal to determine the direction and distance to the checkpoint. Only one checkpoint is active at a time, and a new checkpoint only activates if the current one has been collected. This makes it easier for the player to home in on the sound. The final checkpoint, refereed to as goal, has the same audio signal but different visuals and triggers the game won state when reached.
+
+
+\section{Enemies}
+Enemies in this prototype all follow a simple pattern. They spawn out of a for the player visible spawn point and move in a straight line across the map. How they move is different for each enemy type. Each of them emits a sound that helps to identifies them. They are all pyramid shaped with the apex pointing in the flight direction, to give them the association that they are dangerous.
+
+
+\subsection{Speeder}
+The simplest enemy is the speeder. He moves forward with a constant velocity. This enemy emits a two sounds. One can only be heard by the player if the enemy is moving directly at him.
+
+\dl{cimg('speeder image')}
+
+
+\subsection{Invisible champer}\label{InvisibleChamper}
+This enemy moves just like the speeder. He is however a much harder enemy because he is invisible most of the time. Periodically he makes a champing sound. The SSAS is used to detect when a sound was made. Then the material gets adjusted, so that the champer becomes visible for a short duration.
 
 \dl{cimg('partly visible')}
+\dl{cimg('visible')}
 
 
 \subsection{Beat mover}
@@ -34,15 +45,14 @@ enemies move only if sound is played
 
 \section{Player interaction}
 \subsection{Laser}
-player can shoot laser and destroy enemies
+The player has a laser that he can shoot to destroy enemies. Ammunition is limited and can be refilled by reaching a checkpoint. If the player attempts to shoot without ammunition a failure sound is played and a puny particle effect is played. If the player hits an enemy, a death sound and -particle-system are played.
 
 \dl{cimg('The player shoots the layer at a wall')}
 \dl{cimg('The player shoots an enemy (and he explodes)')}
 
 \subsection{Smoke balls}
-player can throw smoke balls which reveal invisible enemies and reveale the where the physical walls are in the smoke
-How smoke balls work, adding to keycolor, so offset keycolor visible (chapter \ref{rendering})
+Smoke emitting  balls can be thrown by the player. As shown in \cref{SmokeInEnvironment}, smoke balls can reveal where hidden structural objects, like walls, are in the Unity environment. Smoke balls can also be used to uncover the invisible champer as seen in \cref{UncoverEnemy}. More information on how the smoke ball works can be found in \cref{SmokeBallRendering}.
 
 \dl{cimg('environment without smoke')}
-\dl{cimg('player reveals environment with smoke')}
-\dl{cimg('player reveals an enemy with smoke')}
+\dl{cimg('player reveals environment with smoke', 'SmokeInEnvironment')}
+\dl{cimg('player reveals an enemy with smoke', 'UncoverEnemy')}
