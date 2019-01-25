@@ -34,7 +34,7 @@ function cimg(caption, label, img, source, placement, tikz, tikzOptions)
   if not img then resize = true end
 
   caption = caption or 'NO CAPTION'
-  if img == nil then caption = '{\\color{red}MISSING} '..caption
+  if not img then caption = '{\\color{red}MISSING} '..caption end
   img = img or 'images/misc/Placeholder.png'
   tikz = tikz or ''
   tikzOptions = tikzOptions or ''
