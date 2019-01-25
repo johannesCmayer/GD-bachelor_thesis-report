@@ -7,25 +7,29 @@ What fallows is a description of the prototypes developed over the course of the
 
 
 \subsection{Functional}
-The first prototype was developed with the intension of establishing the core systems necessary for a neural network able to render a scene. The entire data generation- and preprocessing pipeline and the neural network model where implemented and evaluated. A small level with checkerboard textures and variable sky and wall colors between environments.\todo{make a distinction between environment and level everywhere in the document, where environment is a variation of a level}
+The first prototype was developed with the intension of establishing the core systems necessary. The entire data generation- and preprocessing pipeline and the neural network model where implemented and evaluated. A small level with checkerboard textures and variable sky and wall colors between environments was created to evaluate the systems. \todo{make a distinction between environment and level everywhere in the document, where environment is a variation of a level}
 
 \dl{cimg('img of simple checker beard room with one sky color')}
 \dl{cimg('another sky color')}
 
 
-\subsection{Walking sim}
-\dl{cimg('picture without object')}
-\dl{cimg('img of the morphing center object')}
-
-
 \subsection{Top down}
-The goal of this prototype is, to test how well the network could be used to hide information in a simple top town navigation environment.
-The idea is, that the network
+This prototype was used to evaluate the suitability of the network for a top town game. In this prototype the player is supposed to go from on colored platform to another. The challenge should be created by only training the network on data captured when the camera points at one of the colored platforms. Training the network on this data resulted only in making the network output blurry, when the player was not positioned on a platform.
 
 \dl{cimg('img of top down, clear sight on platform')}
 \dl{cimg('top down, blurry when not on platform')}
 
 
+\subsection{Walking sim}
+Here the idea was to use the neural network to present the environment to the player through the neural network to create an interesting visual appearance. It also was experimented with having certain objects only be visible if the player is a certain position in the environment. This idea was further explored in the next prototype.
+
+\dl{cimg('picture without object')}
+\dl{cimg('img of the morphing center object')}
+
+
 \subsection{Object morphing}
+This prototype has a level that is divided into four differently colored platforms that are surrounded by tall pillars. The pillars and the coloring of the platforms help the player to orient himself. In the center four different objects are placed. Each of the object is linked with a different marker group as described in \cref{DataGeneration}. There is maker placed for each platform. This means that if an observation is taken from a specific platform only one object is displayed in the center. When the player crosses from one platform to another the center object is morphed from one object to another in an interpolated way. This is because if a network has a limited amount of parameters it can not model an instantaneous change in "pixel space".
 
 \dl{cimg('img of the morphing center object')}
+
+\dl{cimg('img of unity scene')}
