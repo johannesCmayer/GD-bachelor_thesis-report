@@ -6,19 +6,29 @@ In this project I fallowed an iterative prototype workflow creating a prototype 
 What fallows is a description of the prototypes developed over the course of the project. The main prototype "maze game" was the main focus of the project after the direction of the project was defined using the results from previous prototypes as guidance. It is described in detail in \cref{MazeGameSystems}.
 
 
-\subsection{Functional}
-The first prototype was developed with the intension of establishing the core systems. The entire data generation- and preprocessing pipeline and the neural network model where implemented and evaluated. A small level with checkerboard textures, seen in \cref{Functional}, and variable sky and wall colors between environments was created to evaluate the systems. \todo{make a distinction between environment and level everywhere in the document, where environment is a variation of a level}
+\section{Functional}
+The first prototype was developed with the intension of establishing the core systems. The entire data generation- and preprocessing pipeline and the neural network model where implemented and evaluated. A small level with checkerboard textures was created for this prototype as seen in \cref{FunctionalFirstPerson} and \cref{FunctionalCapture}. The sky and wall colors are variable between environments. As \cref{FunctionalFirstPerson} shows, the network can adjust its output based on the information being fed in. The network is able to this without retraining. All that needs to be changed is the inputs to the encoder (see \cref{GQNArchitectureGraph}). \todo{make a distinction between environment and level everywhere in the document, where environment is a variation of a level}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=\imgWidth]{images/workflow/FunctionalF1.png} \\[\picVdist]
+  \includegraphics[width=\imgWidth]{images/workflow/FunctionalF2.png} \\[\picVdist]
+  \includegraphics[width=\imgWidth]{images/workflow/FunctionalF3.png}
+  \caption{The neural network predicts different colors based on the input data that make up $R$}
+  \label{FunctionalFirstPerson}
+  \figsource{own graphic}
+\end{figure}
 
 \begin{figure}[p]
   \centering
   \includegraphics[width=\imgWidth]{images/workflow/Functional1.png} \\[\picVdist]
   \includegraphics[width=\imgWidth]{images/workflow/Functional2.png}
-  \caption{The environment of the functional prototype}
-  \label{Funcional}
+  \caption{Training data is being captured in the functional prototype}
+  \label{FunctionalCapture}
+  \figsource{own graphic}
 \end{figure}
 
-
-\subsection{Top down}
+\section{Top down}
 This prototype was used to evaluate the suitability of the network for a top town game. In this prototype the player is supposed to go from one colored platform to another while avoiding running into red walls. The challenge should be created by only training the network on data captured when the camera points at one of the colored platforms. Training the network on this data resulted only in making the network output blurry, when the player was not positioned on a platform (see \cref{WalkOffPlatform}).
 
 \begin{figure}[p]
@@ -26,6 +36,7 @@ This prototype was used to evaluate the suitability of the network for a top tow
   \includegraphics[width=\imgWidth]{images/workflow/TopDownLevel.png}
   \caption{Top down level as seen in the editor}
   \label{TopDownUnity}
+  \figsource{own graphic}
 \end{figure}
 
 \begin{figure}[p]
@@ -34,27 +45,59 @@ This prototype was used to evaluate the suitability of the network for a top tow
   \includegraphics[width=\imgWidth]{images/workflow/TopDownOff.png}
   \caption{The network output gets blurry when the player walks off a platform.}
   \label{WalkOffPlatform}
+  \figsource{own graphic}
 \end{figure}
 
 
-\subsection{Walking sim}
+\section{Walking sim}
 Here the idea was to use the neural network to present the environment to the player through the neural network to create an interesting visual appearance. It also was experimented with having certain objects only be visible if the player is a certain position in the environment (see \cref{WalkingSim}). This idea was further explored in the next prototype.
 
 \begin{figure}[p]
   \centering
   \includegraphics[width=\imgWidth]{images/workflow/WalkingSimNothing.png} \\[\picVdist]
-  \includegraphics[width=\imgWidth]{images/workflow/WalkingSimClound.png}
+  \includegraphics[width=\imgWidth]{images/workflow/WalkingSimCloud.png}
   \caption{Objects can only be seen, when the player stands at certain locations}
   \label{WalkingSim}
+  \figsource{own graphic}
 \end{figure}
 
 
-\subsection{Object morphing}
-This prototype has a level that is divided into four differently colored platforms that are surrounded by tall pillars. The pillars and the coloring of the platforms help the player to orient himself. In the center four different objects are placed. Each of the object is linked with a different marker group as described in \cref{DataGeneration}. There is maker placed for each platform. This means that if an observation is taken from a specific platform only one object is displayed in the center. When the player crosses from one platform to another the center object is morphed from one object to another in an interpolated way. This is because if a network has a limited amount of parameters it can not model an instantaneous change in "pixel space".
+\section{Object morphing}
+This prototype has a level that is divided into four differently colored platforms as seen in \cref{MorphingLevel} that are surrounded by tall pillars. The pillars and the coloring of the platforms help the player to orient himself. In the center four different objects are placed (see \cref{MorphingObjs}). Each of the object is linked with a different marker group as described in \cref{DataGeneration} and shown in \cref{MorphingMarkers}. There is maker placed for each platform. This means that if an observation is taken from a specific platform only one of the four objects is displayed in the center. When the player crosses from one platform to another the center object is morphed from one object to another as seen in \cref{MorphingToOther}. This is probably because if a neural network has a limited amount of parameters it can not model an instantaneous change in "pixel space".
 
-\dl{cimg('picture without object')}
-\dl{cimg('img of the morphing center object')}
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=\imgWidth]{images/workflow/object_morphing/CaptureAreas.png}
+  \caption{These are the 4 markers (see \cref{DataGeneration}) of the morphing environment. Overlapping areas are differently colored.}
+  \label{MorphingMarkers}
+  \figsource{own graphic}
+\end{figure}
 
-\dl{cimg('img of the morphing center object')}
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=\imgWidth]{images/workflow/object_morphing/TopDown.png}
+  \caption{Top down view of the level with only one object activated in the middle}
+  \label{MorphingLevel}
+  \figsource{own graphic}
+\end{figure}
 
-\dl{cimg('img of unity scene')}
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=0.49\textwidth, height=0.49\textwidth]{images/workflow/object_morphing/Obj_1.png}
+  \includegraphics[width=0.49\textwidth, height=0.49\textwidth]{images/workflow/object_morphing/Obj_2.png} \\[\picVdist]
+  \includegraphics[width=0.49\textwidth, height=1\textwidth]{images/workflow/object_morphing/Obj_3.png}
+  \includegraphics[width=0.49\textwidth, height=1\textwidth]{images/workflow/object_morphing/Obj_4.png}
+  \caption{The 4 differnt objects in the center of the level}
+  \label{MorphingObjs}
+  \figsource{own graphic}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=\imgWithTripple, width=\imgWithTripple]{images/workflow/object_morphing/Morph1.png} \\[\picVdist]
+  \includegraphics[width=\imgWithTripple, width=\imgWithTripple]{images/workflow/object_morphing/Morph2.png} \\[\picVdist]
+  \includegraphics[width=\imgWithTripple, width=\imgWithTripple]{images/workflow/object_morphing/Morph4.png}
+  \caption{The center object morphs into a different object when the player crosses from one marker into another.}
+  \label{MorphingToOther}
+  \figsource{own graphic}
+\end{figure}
