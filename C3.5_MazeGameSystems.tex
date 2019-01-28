@@ -47,7 +47,7 @@ The beat mover uses a script that analyzes the sound spectrum of the attached au
 \subsection{Laser}
 The player has a laser that he can shoot to destroy enemies. Ammunition is limited and can be refilled by reaching a checkpoint. If the player attempts to shoot without ammunition a failure sound is played, and a puny particle effect is displayed. If the player hits an enemy, a death sound and -particle-system are played.
 
-\dl{cimg('The player shoots the layer at a wall')}
+\dl{cimg('The player shoots the layer at a wall', 'ShootLaser', 'images/game_systems/ShootLaser.png')}
 \dl{cimg('The player shoots an enemy (and he explodes)')}
 
 
@@ -55,5 +55,20 @@ The player has a laser that he can shoot to destroy enemies. Ammunition is limit
 Smoke emitting  balls can be thrown by the player. As shown in \cref{SmokeInEnvironment}, smoke balls can reveal where hidden structural objects, like walls, are in the Unity environment. Smoke balls can also be used to uncover the invisible champer as seen in \cref{UncoverEnemy}. More information on how the smoke ball works can be found in \cref{SmokeBallRendering}.
 
 \dl{cimg('environment without smoke')}
-\dl{cimg('player reveals environment with smoke', 'SmokeInEnvironment')}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/game_systems/ThrowSmoke.png}
+  \caption{player reveals environment with smoke}
+  \label{SmokeInEnvironment}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/game_systems/ThrowSmoke.png}
+  \includegraphics[width=0.5\textwidth]{images/game_systems/ThrowSmoke.png}
+  \caption{player reveals environment with smoke}
+  \label{SmokeInEnvironment}
+\end{figure}
+
 \dl{cimg('player reveals an enemy with smoke', 'UncoverEnemy')}
