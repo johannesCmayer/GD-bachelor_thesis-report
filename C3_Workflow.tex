@@ -11,9 +11,9 @@ The first prototype was developed with the intension of establishing the core sy
 
 \begin{figure}[p]
   \centering
-  \includegraphics[width=\imgWidth]{images/workflow/FunctionalF1.png} \\[\picVdist]
-  \includegraphics[width=\imgWidth]{images/workflow/FunctionalF2.png} \\[\picVdist]
-  \includegraphics[width=\imgWidth]{images/workflow/FunctionalF3.png}
+  \includegraphics[width=\imgWithTripple]{images/workflow/FunctionalF1.png} \\[\picVdist]
+  \includegraphics[width=\imgWithTripple]{images/workflow/FunctionalF2.png} \\[\picVdist]
+  \includegraphics[width=\imgWithTripple]{images/workflow/FunctionalF3.png}
   \caption{The neural network predicts different colors based on the input data that make up $R$}
   \label{FunctionalFirstPerson}
   \figsource{own graphic}
@@ -29,12 +29,12 @@ The first prototype was developed with the intension of establishing the core sy
 \end{figure}
 
 \section{Top down}
-This prototype was used to evaluate the suitability of the network for a top town game. In this prototype the player is supposed to go from one colored platform to another while avoiding running into red walls. The challenge should be created by only training the network on data captured when the camera points at one of the colored platforms. Training the network on this data resulted only in making the network output blurry, when the player was not positioned on a platform (see \cref{WalkOffPlatform}).
+This prototype was used to evaluate the suitability of the network for a top town game. In this prototype the player is supposed to go from one colored platform to another while avoiding running into red walls. The challenge should be created by only training the network on data captured when the camera points at one of the colored platforms. Training the network on this data resulted only in making the network output blurry, when the player was not positioned on a platform (see \cref{WalkOffPlatform} and \cref{TopDownUnity}).
 
 \begin{figure}[p]
   \centering
   \includegraphics[width=\imgWidth]{images/workflow/TopDownLevel.png}
-  \caption{Top down level as seen in the editor}
+  \caption{Top down prototype level as seen in the editor}
   \label{TopDownUnity}
   \figsource{own graphic}
 \end{figure}
@@ -43,7 +43,7 @@ This prototype was used to evaluate the suitability of the network for a top tow
   \centering
   \includegraphics[width=\imgWidth]{images/workflow/TopDownOn.png} \\[\picVdist]
   \includegraphics[width=\imgWidth]{images/workflow/TopDownOff.png}
-  \caption{The network output gets blurry when the player walks off a platform.}
+  \caption{In the top down prototype, the network output gets blurry when the player walks off a platform.}
   \label{WalkOffPlatform}
   \figsource{own graphic}
 \end{figure}

@@ -10,15 +10,11 @@ The data generation process can easily be customized in the inspector of the cap
 
 In the Maze game all structural objects are cubes, where raised cubes represent a wall. This makes it easy to find all valid player positions and generate the markers for the environment automatically.
 
-\dl{cimg('data generation process')}
-
 
 \section{Model}
 To create the neural network model used in this project the Kears functional API is used. Keras is the official front end to Tensorflow and simplifies the creation of neural networks. With the functional API predefined callable class instances---which represent layers---can be used to define model architectures. For this a class of a layer type is set up and called with the input to the layer. This then returns the output\footnote{The Keras classes don't execute statements immediately, but construct a computation graph for later execution.} of the layer. The outputs can now be feed into another layer. After the model has been described in this manner, Keras can receive optimization parameters e.g. the loss function and compile the executable computation graph.\todo{is this section necessary, or at the right place?}
 
 The model created corresponds to the model described in \cref{BackgroundGQN}, with the exception that no latent variables $z$ are used. As encoder and decoder dense networks are used.
-
-\dl{cimg('image series of how the network evolved, show output of network')}
 
 
 \subsection{Saving and loading of network}
@@ -34,7 +30,7 @@ First the data is loaded from from disk. Then the data points are normalized. Th
 
 
 \section[IPC]{Inter process communication}
-Because Python runs outside the Unity environment we need a way to send the network output to Unity. This is done by using a local UDP socket to send the JPEG images to a listening UDP socket in Unity. Because UDP is a connectionless protocol and doest give any guaranties that the send data will be received it is a very fast way to send the data. The chance of data getting lost on a local server is very slim and because we are sending a continuous stream we don't care if an image is lost, because we will receive a new one in a few milliseconds.
+Because Python runs outside the Unity environment we need a way to send the network output to Unity. This is done by using a local UDP socket to send the JPEG images to a listening UDP socket in Unity. Because UDP is a connectionless protocol and doesn't give any guaranties that the send data will be received it is a very fast way to send the data. The chance of data getting lost on a local server is very slim and because we are sending a continuous stream we don't care if an image is lost, because we will receive a new one in a few milliseconds.
 
 
 \section{Rendering}\label{rendering}
