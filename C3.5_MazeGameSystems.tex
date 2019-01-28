@@ -12,8 +12,13 @@ In this project I use the Resonance Audio plug-in to simulate spacial sound. Thi
 \section{Sound spectrum analyzing materials}
 I created a simple sound spectrum analyzing script, that when attached to an object automatically varies the intensity of the objects material color based on the current spectrum of the objects audio source. Parameters are exposed to define ranges for valid color intensities and to set how the spectrum should be filtered before its intensity is determined.
 
-\dl{cimg('img sonar cube bright')}
-\dl{cimg('img sonar cube not bright')}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/game_systems/SonarDim.png}
+  \includegraphics[width=0.5\textwidth]{images/game_systems/SonarBright.png}
+  \caption{Checkpoint cuboid varying material color based on the current sound}
+  \label{SonarBlinks}
+\end{figure}
 
 
 \section{Checkpoints}
@@ -25,16 +30,26 @@ Enemies in this prototype all follow a simple pattern. They spawn out of a for t
 
 
 \subsection{Speeder}
-The simplest enemy is the speeder. He moves forward with a constant velocity. This enemy emits a two sounds. One can only be heard by the player if the enemy is moving directly at him.
+\Cref{Speeder} shows the simplest enemy, the speeder. He moves forward with a constant velocity. This enemy emits a two sounds. One can only be heard by the player if the enemy is moving directly at him.
 
-\dl{cimg('speeder image')}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth, height=1\textwidth]{images/game_systems/SpeederSpawns.png}
+  \caption{Speder moves away from his pink spawn point}
+  \label{Speeder}
+\end{figure}
 
 
 \subsection{Invisible champer}\label{InvisibleChamper}
-This enemy moves just like the speeder. However the champer is a much harder enemy because he is invisible most of the time. Periodically he makes a champing sound. Using the spectrum analyzing script the material is adjusted to make the champer visible for a brief period every time he emits a sound.
+This enemy moves just like the speeder. However the champer is a much harder enemy because he is invisible most of the time. Periodically he makes a champing sound. Using the spectrum analyzing script the material is adjusted to make the champer visible for a brief period every time he emits a sound (See \cref{Champer}).
 
-\dl{cimg('partly visible')}
-\dl{cimg('visible')}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth, height=1\textwidth]{images/game_systems/ChamperInvisible.png}
+  \includegraphics[width=1\textwidth, height=1\textwidth]{images/game_systems/ChamperVisible.png}
+  \caption{A champer becomes visible because he emits a sound}
+  \label{Champer}
+\end{figure}
 
 
 \subsection{Beat mover}
@@ -45,30 +60,34 @@ The beat mover uses a script that analyzes the sound spectrum of the attached au
 
 \section{Player interaction}
 \subsection{Laser}
-The player has a laser that he can shoot to destroy enemies. Ammunition is limited and can be refilled by reaching a checkpoint. If the player attempts to shoot without ammunition a failure sound is played, and a puny particle effect is displayed. If the player hits an enemy, a death sound and -particle-system are played.
+The player has a laser that he can shoot to destroy enemies. Ammunition is limited and can be refilled by reaching a checkpoint. If the player attempts to shoot without ammunition a failure sound is played, and a puny particle effect is displayed. If the player hits an enemy, a death sound and -particle-system are played as seen in \cref{DestroyEnemy}.
 
-\dl{cimg('The player shoots the layer at a wall', 'ShootLaser', 'images/game_systems/ShootLaser.png')}
-\dl{cimg('The player shoots an enemy (and he explodes)')}
+\begin{figure}[p]
+  \centering
+  \includegraphics[height=0.29\textheight]{images/game_systems/Shoot1.png} \\[3mm]
+  \includegraphics[height=0.29\textheight]{images/game_systems/Shoot2.png} \\[3mm]
+  \includegraphics[height=0.29\textheight]{images/game_systems/Shoot3.png}
+  \caption{Player destroys an enemy with the laser}
+  \label{DestroyEnemy}
+\end{figure}
 
 
 \subsection{Smoke balls}
 Smoke emitting  balls can be thrown by the player. As shown in \cref{SmokeInEnvironment}, smoke balls can reveal where hidden structural objects, like walls, are in the Unity environment. Smoke balls can also be used to uncover the invisible champer as seen in \cref{UncoverEnemy}. More information on how the smoke ball works can be found in \cref{SmokeBallRendering}.
 
-\dl{cimg('environment without smoke')}
-
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{images/game_systems/ThrowSmoke.png}
-  \caption{player reveals environment with smoke}
+  \includegraphics[width=0.5\textwidth, height=0.5\textwidth]{images/game_systems/NoSmoke.png}
+  \includegraphics[width=0.5\textwidth, height=0.5\textwidth]{images/game_systems/ThrowSmoke.png}
+  \caption{Player reveals environment with smoke}
   \label{SmokeInEnvironment}
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics[width=0.5\textwidth]{images/game_systems/ThrowSmoke.png}
-  \includegraphics[width=0.5\textwidth]{images/game_systems/ThrowSmoke.png}
-  \caption{player reveals environment with smoke}
-  \label{SmokeInEnvironment}
+  \includegraphics[width=0.5\textwidth]{images/game_systems/NoSmoke.png}
+  \caption{Player reveals environment with smoke}
+  \label{UncoverChamper}
 \end{figure}
-
 \dl{cimg('player reveals an enemy with smoke', 'UncoverEnemy')}
