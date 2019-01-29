@@ -6,7 +6,7 @@
 
 \begin{titlepage}
 \begin{tikzpicture}[remember picture,overlay]
-	\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{images/cover/FrontCover.png}};
+	\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth, height=\paperheight]{images/cover/FrontCover.png}};
 	\draw ($(current page.south)+(0,5)$) node [fill=black,fill opacity=0.6,text opacity=1,inner sep=1cm]{\color{white}\Huge\centering\bfseries\sffamily\parbox[c][][t]{0.7\paperwidth}
 	{Shrouded Mirror\\[0pt]
 	{\Large Neural Network Based Rendering \\[-6mm] in Interactive Environments}\\[0cm]
@@ -56,14 +56,15 @@
 \include{C1_Introduction}
 \include{C2_Background}
 \include{C3_Workflow}
-\include{C3.5_MazeGameSystems}
-\include{C4_NeuralNetworkSystems}
-\include{C5_FurtherWork}
-\include{C6_Reflection}
-\include{C7_Resources}
+\include{C4_MazeGameSystems}
+\include{C5_NeuralNetworkSystems}
+\include{C6_FurtherWork}
+\include{C7_Reflection}
+\include{C8_Resources}
 
 
 \printbibliography
+\newpage
 
 \listoffigures
 
@@ -109,7 +110,7 @@ I hereby declare that I am the sole author of this bachelor thesis and that I ha
 \blankpage
 
 \begin{tikzpicture}[remember picture,overlay]
-\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth]{Images/cover/BackCover.png}};
+\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth, height=\paperheight]{Images/cover/BackCover.png}};
 \end{tikzpicture}
 
 \end{document}

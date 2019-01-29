@@ -1,7 +1,7 @@
 % !TEX root = BachelorBookletMain.tex
 
 \chapter{Maze Game Systems}\label{MazeGameSystems}
- In this Prototype the player has to navigate though a maze. He has to use the network output to navigate. There are several enemy types that have to be avoided or destroyed. Multiple objects have to be collected before the exit is unlocked.
+ In this Prototype the player has to navigate though a maze. All static objects in the environment are rendered with a neural network. The player has to use this representation of the environment to navigate. There are several enemy types that have to be avoided or destroyed. Multiple objects have to be collected before the exit is unlocked that if collected wins the level.
 
 \section{Audio}
 In this project I use the Resonance Audio plug-in to simulate spacial sound. This facilitates player orientation. All important objects and events such as enemies and checkpoints emit a unique sound, that helps to spatially locate and identify them. A doppler effect is used on all audiosources, so the player perceives how entities are moving relative to him.
@@ -104,7 +104,7 @@ Smoke emitting  balls can be thrown by the player. As shown in \cref{SmokeInEnvi
   \centering
   \includegraphics[width=\imgWidth]{images/game_systems/NoSmoke.png} \\[\picVdist]
   \includegraphics[width=\imgWidth]{images/game_systems/ThrowSmoke.png}
-  \caption{Player reveals environment with smoke}
+  \caption{The player reveals where the walls are in the unity environment with smoke.}
   \label{SmokeInEnvironment}
   \figsource{own graphic}
 \end{figure}
@@ -113,7 +113,7 @@ Smoke emitting  balls can be thrown by the player. As shown in \cref{SmokeInEnvi
   \centering
   \includegraphics[width=\imgWidth]{images/game_systems/ChamperNoSmoke.png} \\[\picVdist]
   \includegraphics[width=\imgWidth]{images/game_systems/ChamperInSmoke.png}
-  \caption{Player reveals a champer with smoke}
+  \caption{The player reveals a champer with smoke.}
   \label{UncoverChamper}
   \figsource{own graphic}
 \end{figure}

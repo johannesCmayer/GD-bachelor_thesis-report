@@ -1,0 +1,28 @@
+% !TEX root = BachelorBookletMain.tex
+
+\chapter{Reflection}
+\section{Project}
+The original idea of integrating a GQN into an interactive experience was only partly successful. The time needed to get accustomed with the intricacies of the methods required to use the GQN to its full potential was greater that the time available for research in this project. Only a simplified GQN architecture could be utilized in an interactive prototype.
+
+For the prototypes that where developed, it might be argued that simpler methods exist that could have been used to achieve the same design goal. In the maze game a post processing filter might be applied to make the environment more confounding instead of using a neural network. This is a valid critique. If one wants to create a game similar to the maze game and do so quick one should not use a neural network. However, it is probably the case that the specific style that is achieved in this work, using neural networks, is very hard or practically impossible to recreate using simpler methods.
+
+This work also represents only a first exploration of the possibility space of how neural networks might be used to process visual information before it is presented to the player.
+
+More parameters. controll the parameters more.
+
+apply world models \cite{Ha2018-dd} learn more like game over state.
+
+The final version of the maze game prototype, can stand on its own as a playable, challenging game. Only one level is available but with the systems in place, adding more levels would be easy. The goal of the maze game prototype of creating a visually simple but appealing game, where the player has to use sound to navigate effectively through a maze, avoiding enemies and collecting checkpoints, while deciphering the output of the network was a success in my opinion.
+
+The project greatly improved my understanding about how neural networks function at the core. The model in the project uses synthetic data. This enabled me to learn how to construct a complete pipeline for an unsupervised machine learning system. I implemented data generated and preprocessing, created a simplified version of the GQN architecture and improved my intuitions about how to train neural networks.
+
+What is good
+what is bad
+into what directions can this programm I did be developed
+
+\section{Workflow Evaluation}
+When working with neural networks it is often necessary to try out different architectures and parameters for a model that should perform a specific task. For this it is very useful to have programmatic utilities, that automatically search the space of parameters for some time and then returns the best. Because I realized to late into the project how useful these utilities are. The technical debt I collected this far into the project was to high and remaining time of the project to short, so that I decided that the implementation would not be worth the effort.
+
+Another mistake I made, was to make the model too soon too complex. Very early on I started to train the model on data of a camera rotating on multiple axis that produces 64x64---instead of 32x32---resolution images as training data. Both these things significantly increased the time necessary to train the network to reasonable level. This made iteration time slow. Besides the training time issue the implementation of parameterized capturing and higher resolution output took too soon an unnecessarily large chunk of time out of my schedule, time that would have been better spend improving the existing systems.
+
+Furthermore I sunk some time into researching how to train neural network models on multiple machines. After 1--2 days of research I realized, that the endeavor is outside the scope of this project.
