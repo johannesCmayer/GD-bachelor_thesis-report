@@ -7,14 +7,14 @@ What fallows is a description of the prototypes developed over the course of the
 
 
 \section{Functional}
-The first prototype was developed with the intension of establishing the core systems. The entire data generation- and preprocessing pipeline and the neural network model where implemented and evaluated. A small level with checkerboard textures was created for this prototype as seen in \cref{FunctionalFirstPerson} and \cref{FunctionalCapture}. The sky and wall colors are variable between environments. As \cref{FunctionalFirstPerson} shows, the network can adjust its output based on the information being fed in. The network is able to this without retraining. All that needs to be changed is the inputs to the encoder (\cref{GQNArchitectureGraph}). \todo{make a distinction between environment and level everywhere in the document, where environment is a variation of a level}
+The first prototype was developed with the intension of establishing the core systems. The entire data generation- and preprocessing pipeline and the neural network model where implemented and evaluated. A small level with checkerboard textures was created for this prototype as seen in \cref{FunctionalFirstPerson} and \cref{FunctionalCapture}. The sky and wall colors are variable between environments. As \cref{FunctionalFirstPerson} shows, the network can adjust its output based on the information that is being fed in. The network is able to this without retraining. All that needs to be changed is the inputs to the encoder (\cref{GQNArchitectureGraph}).
 
 \begin{figure}[p]
   \centering
-  \includegraphics[width=\imgWithTripple]{images/workflow/FunctionalF1.png} \\[\picVdist]
-  \includegraphics[width=\imgWithTripple]{images/workflow/FunctionalF2.png} \\[\picVdist]
-  \includegraphics[width=\imgWithTripple]{images/workflow/FunctionalF3.png}
-  \caption{The neural network predicts different colors based on the input data that make up $R$}
+  \includegraphics[height=\imgWithTripple]{images/workflow/FunctionalF1.png} \\[\picVdist]
+  \includegraphics[height=\imgWithTripple]{images/workflow/FunctionalF2.png} \\[\picVdist]
+  \includegraphics[height=\imgWithTripple]{images/workflow/FunctionalF3.png}
+  \caption{The neural network predicts different colors based on the input data that make up $R$. Input pictures are shown to the right. The network gives output even if no images are fed in as seen in the last image.}
   \label{FunctionalFirstPerson}
   \figsource{own graphic}
 \end{figure}
@@ -23,7 +23,7 @@ The first prototype was developed with the intension of establishing the core sy
   \centering
   \includegraphics[width=\imgWidth]{images/workflow/Functional1.png} \\[\picVdist]
   \includegraphics[width=\imgWidth]{images/workflow/Functional2.png}
-  \caption{Training data is being captured in the functional prototype}
+  \caption{Training data is being captured in the functional prototype level.}
   \label{FunctionalCapture}
   \figsource{own graphic}
 \end{figure}
