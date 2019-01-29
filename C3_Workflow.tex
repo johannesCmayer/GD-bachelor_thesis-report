@@ -1,20 +1,20 @@
 % !TEX root = BachelorBookletMain.tex
 
 \chapter{Workflow}
-In this project I fallowed an iterative prototype workflow, creating a prototype to evaluate specific ideas. As for implementing different systems needed for the prototype, I followed the workflow of researching a single component\footnote{such as the Kears functional API, UDP sockets, etc.} and implementing it, before beginning further researching efforts.
+In this project I fallowed an iterative prototype workflow, creating multiple prototypes to evaluate specific ideas. As for implementing different systems needed for the application, I followed the workflow of researching a single component\footnote{Such as the Kears functional API, UDP sockets, etc.} and then implementing it, before beginning further researching efforts.
 
-What fallows is a description of the prototypes developed over the course of the project. The main prototype, called "maze game", was the focus of the project after the direction had been set with the help of the results from previous prototypes. The maze game is described in detail in \cref{MazeGameSystems}.
+What fallows is a description of the prototypes developed over the course of the project. The main prototype, called "maze game", became the focus of the project after the direction had been set with the help of the results obtained from previous prototypes. The maze game is described in detail in \cref{MazeGameSystems}.
 
 
 \section{Functional}
-The first prototype was developed with the intension of establishing the core systems. The entire data generation- and preprocessing pipeline and the neural network model where implemented and evaluated. A small level with checkerboard textures was created for this prototype as seen in \cref{FunctionalFirstPerson} and \cref{FunctionalCapture}. The sky and wall colors are variable between environments. As \cref{FunctionalFirstPerson} shows, the network can adjust its output based on the information that is being fed in. The network is able to this without retraining. All that needs to be changed is the inputs to the encoder (\cref{GQNArchitectureGraph}).
+The goal of the first prototype was to developed the core systems. The entire data generation- and preprocessing pipeline and the neural network model where implemented and evaluated. A small level with checkerboard textures was created for this prototype (\cref{FunctionalFirstPerson} and \cref{FunctionalCapture}). The sky and wall colors are variable between environments. An environment is a variation of a level. In this case, everything but the sky and wall colors stays constant for each environment, e.g. the walls are always at the same position in each environment. As \cref{FunctionalFirstPerson} shows, the network can adjust its output based on the information that is being fed in. The network is able to this without retraining. All that needs to be changed is the inputs to the encoder (\cref{GQNArchitectureGraph}). More information on the systems developed in this prototype can be found in \cref{NeuralNetworkSystems}.
 
 \begin{figure}[p]
   \centering
   \includegraphics[height=\imgWithTripple]{images/workflow/FunctionalF1.png} \\[\picVdist]
   \includegraphics[height=\imgWithTripple]{images/workflow/FunctionalF2.png} \\[\picVdist]
   \includegraphics[height=\imgWithTripple]{images/workflow/FunctionalF3.png}
-  \caption{The neural network predicts different colors based on the input data that make up $R$. Input pictures are shown to the right. The network gives output even if no images are fed in as seen in the last image.}
+  \caption{The neural network predicts different colors based on the input data that makes up $R$. The input pictures are shown to the right. The network gives output even if no images are fed in as seen in the last image.}
   \label{FunctionalFirstPerson}
   \figsource{own graphic}
 \end{figure}
@@ -29,7 +29,7 @@ The first prototype was developed with the intension of establishing the core sy
 \end{figure}
 
 \section{Top down}
-This prototype was used to evaluate the suitability of the network for a top town game. In this prototype the player is supposed to go from one colored platform to another while avoiding running into red walls. The challenge should be created by only training the network on data captured when the camera points at one of the colored platforms. Training the network on this data resulted only in making the network output blurry, when the player was not positioned on a platform (\cref{WalkOffPlatform} and \cref{TopDownUnity}).
+This prototype was used to evaluate the suitability of the network for a top town game. In this prototype the player has to go from one colored platform to another while avoiding the red walls. The challenge should be created by only training the network on data that is captured by pointing the camera at one of the colored platforms. Training the network on this data resulted only in making the network output blurry, when the player was not positioned on a platform (\cref{WalkOffPlatform} and \cref{TopDownUnity}). Because the prototype did not present an interesting direction, it was abandoned.
 
 \begin{figure}[p]
   \centering
@@ -50,7 +50,7 @@ This prototype was used to evaluate the suitability of the network for a top tow
 
 
 \section{Walking sim}
-Here the idea was to use the neural network to present the environment to the player through the neural network to create an interesting visual appearance. It also was experimented with having certain objects only be visible if the player is a certain position in the environment (\cref{WalkingSim}). This idea was further explored in the next prototype.
+Here the idea was to present the level to the player through the neural network to create an interesting visual appearance. I also experimented with having certain objects only be visible if the player is at a certain position in the environment (\cref{WalkingSim}). This idea was further explored in the next prototype.
 
 \begin{figure}[p]
   \centering
@@ -63,12 +63,12 @@ Here the idea was to use the neural network to present the environment to the pl
 
 
 \section{Object morphing}
-This prototype has a level that is divided into four differently colored platforms as seen in \cref{MorphingLevel} that are surrounded by tall pillars. The pillars and the coloring of the platforms help the player to orient himself. In the center four different objects are placed (\cref{MorphingObjs}). Each of the object is linked with a different marker group as described in \cref{DataGeneration} and shown in \cref{MorphingMarkers}. There is maker placed for each platform. This means that if an observation is taken from a specific platform only one of the four objects is displayed in the center. When the player crosses from one platform to another the center object is morphed from one object to another as seen in \cref{MorphingToOther}. This is probably because if a neural network has a limited amount of parameters it can not model an instantaneous change in "pixel space".
+This prototype has a level that is divided into four differently colored platforms (\cref{MorphingLevel}) that are surrounded by tall pillars. The coloring of the platforms and the pillars help the player to orient himself. In the center four different objects are placed (\cref{MorphingObjs}). Each of the objects is linked with a different marker group as described in \cref{DataGeneration}. The marker groups are shown in \cref{MorphingMarkers}. There is a marker placed on top of each platform. This means that if an observation is taken from a specific platform only one of the four objects is displayed in the center. When the player crosses from one platform to another the center object is morphed from one object to another as seen in \cref{MorphingToOther}. This is probably because a neural network with a limited amount of parameters cannot model an instantaneous change in "pixel space".
 
 \begin{figure}[p]
   \centering
   \includegraphics[width=\imgWidth]{images/workflow/object_morphing/CaptureAreas.png}
-  \caption{These are the 4 markers (\cref{DataGeneration}) of the morphing environment. Overlapping areas are differently colored.}
+  \caption{These are the 4 markers (explained in \cref{DataGeneration}) of the morphing environment. Overlapping areas are differently colored.}
   \label{MorphingMarkers}
   \figsource{own graphic}
 \end{figure}
