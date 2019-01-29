@@ -1,6 +1,6 @@
 % !TEX root = BachelorBookletMain.tex
 
-\chapter{Further work}
+\chapter{Further work}\label{FurtherWork}
 This chapter presents possible future directions of how the project can be expanded upon.
 
 
@@ -20,5 +20,7 @@ To enable more prototypes, the capability of the GQN network should be expanded 
 After this update the network would also be able to directly render nonstatic objects. To capture the movement of objects, each frame a new observation from all observation points needs to be send to the encoder to update the environment representation, that is then used to render the output.
 
 
-\subsection{Generative model for modeling environment}
+\subsection{Generative model for modeling environment}\label{PlayerEnvironmentModeling}
 The player has to manually update the inputs to the GQN. For this he places some object in the environment, where the observations should be taken. To create more gameplay depth, the number of possible observations that can be taken per level and the total number of active observations should be limited in some way. This forces the player to strategize about when and where to take observations.
+
+What is described in \cref{PlayerEnvironmentModeling} for example might be used to create a unique hide and seek multiplayer game

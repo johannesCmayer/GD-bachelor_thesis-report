@@ -41,8 +41,8 @@ This prototype was used to evaluate the suitability of the network for a top tow
 
 \begin{figure}[p]
   \centering
-  \includegraphics[width=\imgWidth]{images/workflow/TopDownOn.png} \\[\picVdist]
-  \includegraphics[width=\imgWidth]{images/workflow/TopDownOff.png}
+  \includegraphics[width=0.83\textwidth]{images/workflow/TopDownOn.png} \\[\picVdist]
+  \includegraphics[width=0.83\textwidth]{images/workflow/TopDownOff.png}
   \caption{In the top down prototype, the network output gets blurry when the player walks off a platform.}
   \label{WalkOffPlatform}
   \figsource{own graphic}
@@ -54,14 +54,15 @@ Here the idea was to present the level to the player through the neural network 
 
 \begin{figure}[p]
   \centering
-  \includegraphics[width=\imgWidth]{images/workflow/WalkingSimNothing.png} \\[\picVdist]
-  \includegraphics[width=\imgWidth]{images/workflow/WalkingSimCloud.png}
+  \includegraphics[width=0.83\textwidth]{images/workflow/WalkingSimNothing.png} \\[\picVdist]
+  \includegraphics[width=0.83\textwidth]{images/workflow/WalkingSimCloud.png}
   \caption{Objects can only be seen, when the player stands at certain locations}
   \label{WalkingSim}
   \figsource{own graphic}
 \end{figure}
 
 
+\newpage
 \section{Object morphing}
 This prototype has a level that is divided into four differently colored platforms (\cref{MorphingLevel}) that are surrounded by tall pillars. The coloring of the platforms and the pillars help the player to orient himself. In the center four different objects are placed (\cref{MorphingObjs}). Each of the objects is linked with a different marker group as described in \cref{DataGeneration}. The marker groups are shown in \cref{MorphingMarkers}. There is a marker placed on top of each platform. This means that if an observation is taken from a specific platform only one of the four objects is displayed in the center. When the player crosses from one platform to another the center object is morphed from one object to another as seen in \cref{MorphingToOther}. This is probably because a neural network with a limited amount of parameters cannot model an instantaneous change in "pixel space".
 
@@ -94,9 +95,9 @@ This prototype has a level that is divided into four differently colored platfor
 
 \begin{figure}[p]
   \centering
-  \includegraphics[width=\imgWithTripple, width=\imgWithTripple]{images/workflow/object_morphing/Morph1.png} \\[\picVdist]
-  \includegraphics[width=\imgWithTripple, width=\imgWithTripple]{images/workflow/object_morphing/Morph2.png} \\[\picVdist]
-  \includegraphics[width=\imgWithTripple, width=\imgWithTripple]{images/workflow/object_morphing/Morph4.png}
+  \includegraphics[width=0.36\textheight]{images/workflow/object_morphing/Morph1.png} \\[\picVdist]
+  \includegraphics[width=0.36\textheight]{images/workflow/object_morphing/Morph2.png} \\[\picVdist]
+  \includegraphics[width=0.36\textheight]{images/workflow/object_morphing/Morph4.png}
   \caption{The center object morphs into a different object when the player crosses from one marker into another.}
   \label{MorphingToOther}
   \figsource{own graphic}
