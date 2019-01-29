@@ -12,7 +12,7 @@ I created a simple sound spectrum analyzing script, that when attached to an obj
 
 
 \section{Checkpoints}
-To beat a level the player has to collect all checkpoints. They are visualized as green rectangular cuboids that vary their material using the spectrum analyzing script (see \cref{SonarBlinks}). Periodically a checkpoint emits a high pitched, slowly decaying ping sound. Because the sound is specialized with Resonance Audio, the player can use this audio signal to determine the direction and distance to the checkpoint. Only one checkpoint is active at a time, and a new checkpoint only activates if the current one has been collected. This makes it easier for the player to home in on the sound. The final checkpoint, refereed to as goal, has the same audio signal but different visuals (see \cref{GoalBlinks}) and triggers the game won state when reached.
+To beat a level the player has to collect all checkpoints. They are visualized as green rectangular cuboids that vary their material using the spectrum analyzing script (\cref{SonarBlinks}). Periodically a checkpoint emits a high pitched, slowly decaying ping sound. Because the sound is specialized with Resonance Audio, the player can use this audio signal to determine the direction and distance to the checkpoint. Only one checkpoint is active at a time, and a new checkpoint only activates if the current one has been collected. This makes it easier for the player to home in on the sound. The final checkpoint, refereed to as goal, has the same audio signal but different visuals (\cref{GoalBlinks}) and triggers the game won state when reached.
 
 \begin{figure}[p]
   \centering
@@ -38,7 +38,7 @@ Enemies in this prototype all follow a simple pattern. They spawn out of a for t
 
 
 \subsection{Speeder}
-\Cref{Speeder} shows the simplest enemy, the speeder. He moves forward with a constant velocity. This enemy emits a two sounds. One can only be heard by the player if the enemy is moving directly at him. A variation of the speeder exists that moves way faster and looks different (see \cref{FastSpeeder}). Because of the doppler effect applied to the audio sources the sound emmitted feels more dangerous. This is probably because with the doppler sound you also hear that it goes really fast.
+\Cref{Speeder} shows the simplest enemy, the speeder. He moves forward with a constant velocity. This enemy emits a two sounds. One can only be heard by the player if the enemy is moving directly at him. A variation of the speeder exists that moves way faster and looks different (\cref{FastSpeeder}). Because of the doppler effect applied to the audio sources the sound emmitted feels more dangerous. This is probably because with the doppler sound you also hear that it goes really fast.
 
 \begin{figure}[p]
   \centering
@@ -58,7 +58,7 @@ Enemies in this prototype all follow a simple pattern. They spawn out of a for t
 
 
 \subsection{Invisible champer}\label{InvisibleChamper}
-This enemy moves just like the speeder. However the champer is a much harder enemy because he is invisible most of the time. Periodically he makes a champing sound. Using the spectrum analyzing script the material is adjusted to make the champer visible for a brief period every time he emits a sound (see \cref{Champer}).
+This enemy moves just like the speeder. However the champer is a much harder enemy because he is invisible most of the time. Periodically he makes a champing sound. Using the spectrum analyzing script the material is adjusted to make the champer visible for a brief period every time he emits a sound (\cref{Champer}).
 
 \begin{figure}[p]
   \centering

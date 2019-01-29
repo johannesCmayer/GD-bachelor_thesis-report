@@ -36,7 +36,7 @@ Because Python runs outside the Unity environment we need a way to send the netw
 \section{Rendering}\label{rendering}
 Now the data received by the Unity UDP socket gets loaded into a texture. This texture is then rendered to screen. Because our simplified model is unable to render nonstatic objects we need to merge the network output with rendered output from a Unity camera, if we want to use such objects. For this we change the material of objects, we don't want to see in the merged output, to an unlit material of a specific color, referred from here on as the key-out color. This can automatically be done when Unity enters play mode using a script that filters objects based on their layer. \Cref{KeyoutEditor} shows the application of the material form the editor perspective.
 
-Now we render a Unity camera and bit blit the image into a texture using a custom shader that sets all pixels of that are equal to the key-out color to be transparent. Then we apply a pixelation shader to the image to reduce it to the same resolution as the network output. Finally we blit the pixelated version onto the screen over the network rendered output (see \cref{RenderMerge}).
+Now we render a Unity camera and bit blit the image into a texture using a custom shader that sets all pixels of that are equal to the key-out color to be transparent. Then we apply a pixelation shader to the image to reduce it to the same resolution as the network output. Finally we blit the pixelated version onto the screen over the network rendered output (\cref{RenderMerge}).
 
 \begin{figure}[p]
   \centering
