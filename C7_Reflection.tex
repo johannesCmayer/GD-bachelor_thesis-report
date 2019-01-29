@@ -8,19 +8,10 @@ For the prototypes that where developed, it might be argued that simpler methods
 
 This work also represents only a first exploration of the possibility space of how neural networks might be used to process visual information before it is presented to the player.
 
-More parameters. controll the parameters more.
-
-apply world models \cite{Ha2018-dd} learn more like game over state.
-
-
-
 The final version of the maze game prototype, can stand on its own as a playable, challenging game. Only one level is available but with the systems in place, adding more levels would be easy. The goal of the maze game prototype of creating a visually simple but appealing game, where the player has to use sound to navigate effectively through a maze, avoiding enemies and collecting checkpoints, while deciphering the output of the network was a success in my opinion.
 
 The project greatly improved my understanding about how neural networks function at the core. The model in the project uses synthetic data. This enabled me to learn how to construct a complete pipeline for an unsupervised machine learning system. I implemented data generated and preprocessing, created a simplified version of the GQN architecture and improved my intuitions about how to train neural networks.
 
-What is good
-what is bad
-into what directions can this programm I did be developed
 
 \section{Workflow Evaluation}
 When working with neural networks it is often necessary to try out different architectures and parameters for a model that should perform a specific task. For this it is very useful to have programmatic utilities, that automatically search the space of parameters for some time and then returns the best. Because I realized to late into the project how useful these utilities are. The technical debt I collected this far into the project was to high and remaining time of the project to short, so that I decided that the implementation would not be worth the effort.
@@ -30,26 +21,24 @@ Another mistake I made, was to make the model too soon too complex. Very early o
 Furthermore I sunk some time into researching how to train neural network models on multiple machines. After 1--2 days of research I realized, that the endeavor is outside the scope of this project.
 
 \section{Other directions}
-The GQN is a very versatile. There are many directions, different from the ones explored in this work, one might want explore. Some that came to my mind are listed below.
+The GQN is a very versatile. There are many directions, different from the ones explored in this work, one might want to go. Some that came to my mind are listed below.
 
 \subsection{Reinforcement learning}
-One promising way to apply neural networks to interactive environments is through reinforcement learning. Reinforcement learning allows machine learning agents to learn from experiences. They might be used the future be used to create more realistic NPCs, generate content such as levels and music, or to open up the world of machine learning to players by letting them train their own agents. The ability of the GQN to create a compact encoding of an environment can be used in conjunction with reinforcement learning.
+One promising way to apply neural networks to interactive environments is through reinforcement learning. Reinforcement learning allows machine learning agents to learn from experiences. They might in the future be used to create more realistic NPCs, generate content such as levels and music, or to open up the world of machine learning to players by letting them train their own agents. The ability of the GQN to create a compact encoding of an environment can be used in conjunction with reinforcement learning.
 
-\cite{gqn} show that it is possible to utilize the representation of a GQN as input to a reinforcement learning algorithm to greatly improve the algorithms data efficiency. This in turn makes an agent learn faster with fewer data points\footnote{$75\%$ less data required was reported in the paper.}, making it more practical to use reinforcement learning in interactive environments. In the paper they train an agent to control a robot arm to reach for a randomly positioned sphere. They also show that the agent can till learn how to control the arm, when the camera is positioned at a random position on a sphere around the robot arm each frame.
+\cite{gqn} show that it is possible to utilize the representation of a GQN as input to a reinforcement learning algorithm to greatly improve the algorithms data efficiency. This in turn makes an agent learn faster with fewer data points\footnote{The paper reported that $75\%$ less data was required.} making it more practical to use reinforcement learning in interactive environments. In the paper they train an agent to control a robot arm to reach for a randomly positioned sphere. They also show that the agent can learn how to control the arm, even when the camera is positioned at a random position on a sphere around the robot arm each frame.
 
-player controlls the camera when the agent learns and during inference.
-
-
-\subsection{Generating geometry}
-Use GQN to generate 3D objects.
-geometry changes based on player position.
+The invariance to where the camera is positioned could potentially be used to give control of the camera to a player. The player could then, by moving the camera, determine what kind of observations an agent gets from the environment. This is interesting both as a means of giving the player control of the learning process and manipulating inference. During training the player can focus on different objects the agent can interact with. This could enables the player to determine which skills the agent learns. During inference the player can influence the already learned behavior by changing the inputs the agent receives by moving the camera.
 
 
-\subsection{Code generation}
-Maybe a GQN can be used to generate code. For this we feed in a vector encoded representations of source code. It might be possible to integrate a reinforcement learning agents into this system, that learns to predict if some code would compile based on the representation the GQN learned and would add to the loss accordingly. This might allow us to use gradient decent to minimize the compile errors the output of the model has.
+% \subsection{Generating geometry}
+% Use GQN to generate 3D objects.
+% geometry changes based on player position.
+%
+%
+% \subsection{Code generation}
+% Maybe a GQN can be used to generate code. For this we feed in a vector encoded representations of source code. It might be possible to integrate a reinforcement learning agents into this system, that learns to predict if some code would compile based on the representation the GQN learned and would add to the loss accordingly. This might allow us to use gradient decent to minimize the compile errors the output of the model has.
 
 
-Player moves camera of reinforcement learning agent.
-
-
-other application of GQN that are different from what the this project explored
+\subsection{Synthesized game}
+One might be able to expand the capabilities of the GQN to include sequence modeling. This would mean, that the model is able to not only predict the current environment state but also how this state evolves over time. The model would then be able to predict how a mobile object would move on screen given only images of the environment, the coordinates of where the images where taken, and a reference from which time step each image stems. This might even allow the network to predict game states such as game over and game state changes caused by player input similar to what was shown to be possible by \cite{Ha2018-dd}. This would allow to train one model on multiple game environments and then smoothly blend between the different environments, creating an nearly infinite amount of gameplay variations.
