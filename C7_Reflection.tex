@@ -12,6 +12,8 @@ More parameters. controll the parameters more.
 
 apply world models \cite{Ha2018-dd} learn more like game over state.
 
+
+
 The final version of the maze game prototype, can stand on its own as a playable, challenging game. Only one level is available but with the systems in place, adding more levels would be easy. The goal of the maze game prototype of creating a visually simple but appealing game, where the player has to use sound to navigate effectively through a maze, avoiding enemies and collecting checkpoints, while deciphering the output of the network was a success in my opinion.
 
 The project greatly improved my understanding about how neural networks function at the core. The model in the project uses synthetic data. This enabled me to learn how to construct a complete pipeline for an unsupervised machine learning system. I implemented data generated and preprocessing, created a simplified version of the GQN architecture and improved my intuitions about how to train neural networks.
@@ -26,3 +28,28 @@ When working with neural networks it is often necessary to try out different arc
 Another mistake I made, was to make the model too soon too complex. Very early on I started to train the model on data of a camera rotating on multiple axis that produces 64x64---instead of 32x32---resolution images as training data. Both these things significantly increased the time necessary to train the network to reasonable level. This made iteration time slow. Besides the training time issue the implementation of parameterized capturing and higher resolution output took too soon an unnecessarily large chunk of time out of my schedule, time that would have been better spend improving the existing systems.
 
 Furthermore I sunk some time into researching how to train neural network models on multiple machines. After 1--2 days of research I realized, that the endeavor is outside the scope of this project.
+
+\section{Other directions}
+The GQN is a very versatile. There are many directions, different from the ones explored in this work, one might want explore. Some that came to my mind are listed below.
+
+\subsection{Reinforcement learning}
+One promising way to apply neural networks to interactive environments is through reinforcement learning. Reinforcement learning allows machine learning agents to learn from experiences. They might be used the future be used to create more realistic NPCs, generate content such as levels and music, or to open up the world of machine learning to players by letting them train their own agents. The ability of the GQN to create a compact encoding of an environment can be used in conjunction with reinforcement learning.
+
+\cite{gqn} show that it is possible to utilize the representation of a GQN as input to a reinforcement learning algorithm to greatly improve the algorithms data efficiency. This in turn makes an agent learn faster with fewer data points\footnote{$75\%$ less data required was reported in the paper.}, making it more practical to use reinforcement learning in interactive environments. In the paper they train an agent to control a robot arm to reach for a randomly positioned sphere. They also show that the agent can till learn how to control the arm, when the camera is positioned at a random position on a sphere around the robot arm each frame.
+
+player controlls the camera when the agent learns and during inference.
+
+
+\subsection{Generating geometry}
+Use GQN to generate 3D objects.
+geometry changes based on player position.
+
+
+\subsection{Code generation}
+Maybe a GQN can be used to generate code. For this we feed in a vector encoded representations of source code. It might be possible to integrate a reinforcement learning agents into this system, that learns to predict if some code would compile based on the representation the GQN learned and would add to the loss accordingly. This might allow us to use gradient decent to minimize the compile errors the output of the model has.
+
+
+Player moves camera of reinforcement learning agent.
+
+
+other application of GQN that are different from what the this project explored
