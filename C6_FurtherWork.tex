@@ -5,22 +5,22 @@ This chapter presents possible future directions of how the project can be expan
 
 
 \section{Interactive data generation}
-One additional layer of interactivity could be created by giving the player control over how the network is trains, specifically controlling the generation of the training data. One way to achieve this is to allow the player to traverse the unity environment and take screenshots of it with a keypress \footnote{or alternatively we could record a stream of what the player sees each moment}. The captured images are then used to train a neural network. After training the player has to fulfill some task in the environment, but now he has to use the output of the network he trained to navigate the environment.
+One additional layer of interactivity could be created by giving the player control over how the network trains. Specifically the player could control the generation of the training data. One way to achieve this is by allowing the player to traverse the unity environment and take screenshots of it via a keypress \footnote{or alternatively we could record what the player sees each moment as a series of images}. The captured images would then be used to train a neural network. After training the player would have to fulfill some task in the environment, but now he has to use the output of the network he trained to navigate the environment.
 
-This could be used to create a competitive multiplayer game where both players first have to train a network and then use their network to beat the other player at some task.
+This could be used to create a competitive multiplayer game where both players first have to train a network and then use the output of their trained network to beat the other player at some task that has to be performed in the environment such as collecting objects, catching the other player or shooting the other player.
 
 
 \section{Blending of internal network state}
-One way to make the output of the neural network more interesting, is by parameterizing the internal learned parameters. During training they would not have be variable, but after training the parameters can then be varied to morph the output of the neural network. This morphing might be dependent on some dynamic gameplay values. For example, if the player shoots the laser the morphing could be set to height value and then gradually lerp back.
+One way to make the output of the neural network more interesting is by parameterizing the internal learned parameters. During training they would not have be variable, but after training the parameters can be manipulated to morph the output of the neural network. This morphing might be dependent on some dynamic gameplay values i.e. if the player shoots the laser the morphing could be set to height value and then gradually lerp back.
 
 
 \section{Model improvements}
-To enable more prototypes, the capability of the GQN network should be expanded so that it is as capable as the original implementation. The data generation process and preprocessing are capable of supplying such an implementation with the required data. This means that only the architecture of the model needs to be updated.
-
-After this update the network would also be able to directly render nonstatic objects. To capture the movement of objects, each frame a new observation from all observation points needs to be send to the encoder to update the environment representation, that is then used to render the output.
+To enable more prototypes, the capability of the GQN network should be expanded so that it is as capable as the original implementation. The data generation process and preprocessing are capable of supplying such an implementation with the required data. This means that only the architecture of the model needs to be updated. Updating the network in this would would enable the development of the prototypes in the following subsections.
 
 
-\subsection{Generative model for modeling environment}\label{PlayerEnvironmentModeling}
-The player has to manually update the inputs to the GQN. For this he places some object in the environment, where the observations should be taken. To create more gameplay depth, the number of possible observations that can be taken per level and the total number of active observations should be limited in some way. This forces the player to strategize about when and where to take observations.
+\subparagraph{Rendering nonstatic objects}
+After the update the network would be able to directly render nonstatic objects. To capture the movement of objects, each frame a new observation from all observation points needs to be send to the encoder to update the environment representation, that is then used to render the output. Updating the representation each frame means that the output of the network would always represent where objects are in the environment at the present time.
 
-What is described in \cref{PlayerEnvironmentModeling} for example might be used to create a unique hide and seek multiplayer game
+
+\subsection{Interactive environment modeling}\label{PlayerEnvironmentModeling}
+In this prototype the player manually updates the inputs to the GQN. For this he places some object in the environment, where the observations should be taken. To create more gameplay depth, the number of possible observations that can be taken per level and the total number of active observations should be limited in some way. This forces the player to strategize about when and where to take observations. Placing observations at a position would make the output of the network more accurate in the region the capturing object points in.

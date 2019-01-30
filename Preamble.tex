@@ -14,14 +14,21 @@
 \usepackage[ddmmyyyy]{datetime}
 \usepackage{setspace}
 \usepackage{titlesec}
-\usepackage[margin=5cm
-		layout=a4paper,
-    layouthoffset=2mm,
-    layoutvoffset=2mm,
-    left    = 2.3cm,
-    bottom  = 2.5cm,
-    includefoot,
-    showframe
+\usepackage{fp}
+
+\def\bleed{0}
+\FPeval{\xSize}{210 + \bleed}
+\FPeval{\ySize}{297 + \bleed}
+\FPeval{\xOffset}{\bleed / 2}
+\FPeval{\yOffset}{\bleed / 2}
+
+\usepackage[
+	margin=5cm,
+	% papersize={\xSize mm, \ySize mm},% {210mm, 297mm} = A4
+	% layout=a4paper,
+  % layouthoffset=\xOffset mm,
+  % layoutvoffset=\yOffset mm,
+    % showframe
 ]{geometry}
 \usepackage{makecell}
 \usepackage[english]{babel}
@@ -36,7 +43,7 @@
 \pgfplotsset{compat=1.16}
 \usepackage{pgffor}
 
-\usepackage{fp}
+
 \usepackage{luacode}
 \usepackage{bm}
 % font
