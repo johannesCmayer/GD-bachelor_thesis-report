@@ -1,10 +1,10 @@
 % !TEX root = BachelorBookletMain.tex
 
 \chapter{Maze Game Systems}\label{MazeGameSystems}
- In this Prototype the player has to navigate though a maze. All static objects in the environment are rendered with a neural network. The player has to use this representation of the environment to navigate. There are several enemy types that have to be avoided or destroyed. Multiple objects have to be collected before the exit is unlocked. By collecting the goal the player wins the level.
+ In this Prototype the player has to navigate though a maze. All static objects in the environment are rendered with a neural network. The player has to use the output of the neural network to navigate through it. There are several enemy types that have to be avoided or destroyed. Multiple checkpoints have to be collected before the goal is unlocked. By collecting the goal the player wins the level.
 
 \section{Audio}
-In this project I use the Resonance Audio plug-in to simulate spatial sound. This facilitates player orientation. All important objects and events such as enemies and checkpoints emit a unique sound, that helps to spatially locate and identify them. A doppler effect is used on all audiosources, so the player perceives how entities are moving relative to him.
+In this project I use the Resonance Audio plug-in to simulate spatial sound. This facilitates player orientation. All important objects and events such as enemies and checkpoints emit a unique sound, that helps to spatially locate and identify them. A doppler effect is used on all audiosources, so that the player perceives how entities are moving relative to him.
 
 
 \section{Sound spectrum analyzing materials}
@@ -12,7 +12,7 @@ I created a simple sound spectrum analyzing script, that when attached to an obj
 
 
 \section{Checkpoints}
-To beat a level the player has to collect all checkpoints. They are visualized as green rectangular cuboids that vary their material using the spectrum analyzing script (\cref{SonarBlinks}). Periodically a checkpoint emits a high pitched, slowly decaying ping sound. Because the sound is specialized with Resonance Audio, the player can use this audio signal to determine the direction and distance to the checkpoint. Only one checkpoint is active at a time, and a new checkpoint only activates if the current one has been collected. This makes it easier for the player to home in on the sound. The final checkpoint, refereed to as goal, has the same audio signal but different visuals (\cref{GoalBlinks}) and triggers the game won state when reached.
+To beat a level the player has to collect all checkpoints. They are visualized as green rectangular cuboids that vary their material using the spectrum analyzing script (\cref{SonarBlinks}). Periodically a checkpoint emits a high pitched, slowly decaying ping sound. Because the sound is specialized with Resonance Audio, the player can use this audio signal to determine the direction and distance to a checkpoint. Only one checkpoint is active at a time, and a new checkpoint only activates if the current one has been collected. This makes it easier for the player to home in on the sound. The final checkpoint, refereed to as goal, has the same audio signal but different visuals (\cref{GoalBlinks}) and triggers the game won state when reached.
 
 \begin{figure}[p]
   \centering
@@ -38,7 +38,7 @@ Enemies in this prototype all follow a simple pattern. They spawn out of a for t
 
 
 \subsection{Speeder}
-\Cref{Speeder} shows the simplest enemy, the speeder. He moves forward with a constant velocity. This enemy emits a two sounds. One can only be heard by the player if the enemy is moving directly at him. A variation of the speeder exists that moves way faster and looks different (\cref{FastSpeeder}). Because of the doppler effect applied to the audio sources the sound emmitted feels more dangerous. This is probably because with the doppler sound you also hear that it goes really fast.
+\Cref{Speeder} shows the simplest enemy, the speeder. He moves forward with a constant velocity. This enemy emits a two sounds. One can only be heard by the player if the enemy is moving directly at him. A variation of the speeder exists that moves way faster and looks different (\cref{FastSpeeder}). Because of the doppler effect applied to the audio sources, the sound emmitted feels more dangerous. This is probably because with the doppler sound you also hear that it goes really fast.
 
 \begin{figure}[p]
   \centering
@@ -58,7 +58,7 @@ Enemies in this prototype all follow a simple pattern. They spawn out of a for t
 
 
 \subsection{Invisible champer}\label{InvisibleChamper}
-This enemy moves just like the speeder. However the champer is a much harder enemy because he is invisible most of the time. Periodically he makes a champing sound. Using the spectrum analyzing script the material is adjusted to make the champer visible for a brief period every time he emits a sound (\cref{Champer}).
+This enemy moves just like the speeder. However the champer is a much harder enemy because he is invisible most of the time. Periodically he makes a champing sound. Using the spectrum analyzing script the material of the champer is adjusted to make him visible for a brief period, every time he emits a sound (\cref{Champer}).
 
 \begin{figure}[p]
   \centering
@@ -85,7 +85,7 @@ The DumDum uses a script that analyzes the sound spectrum of the attached audio 
 \newpage
 \section{Player interaction}
 \subsection{Laser}
-The player has a laser that he can shoot to destroy enemies. Ammunition is limited and can be refilled by reaching a checkpoint. If the player attempts to shoot without ammunition a failure sound is played, and a puny particle effect is displayed. If the player hits an enemy, a death sound and -particle-system are played as seen in \cref{DestroyEnemy}.
+The player has a laser that he can shoot to destroy enemies. Ammunition is limited but can be refilled by reaching a checkpoint. If the player attempts to shoot without ammunition a failure sound is played, and a puny particle effect is displayed. If the player hits an enemy, a death sound and -particle-system are played as seen in \cref{DestroyEnemy}.
 
 \begin{figure}[p]
   \centering
@@ -99,7 +99,7 @@ The player has a laser that he can shoot to destroy enemies. Ammunition is limit
 
 
 \subsection{Smoke balls}
-Smoke emitting  balls can be thrown by the player. As shown in \cref{SmokeInEnvironment}, smoke balls can reveal where hidden structural objects, like walls, are in the Unity environment. Smoke balls can also be used to uncover the invisible champer as seen in \cref{UncoverChamper}. More information on how the smoke ball works can be found in \cref{SmokeBallRendering}.
+Smoke emitting  balls can be thrown by the player. As shown in \cref{SmokeInEnvironment}, smoke balls can reveal where structural objects, like walls, are in the Unity environment. This is useful because where a wall is in the unity environment and where it is displayed by the network might vary considerably in places. Smoke balls can also be used to uncover the invisible champer as seen in \cref{UncoverChamper}. More information on how the smoke ball works can be found in \cref{SmokeBallRendering}.
 
 \begin{figure}[p]
   \centering
