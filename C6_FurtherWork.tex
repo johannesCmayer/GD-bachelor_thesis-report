@@ -18,9 +18,10 @@ One way to make the output of the neural network more interesting is by paramete
 To enable more prototypes, the capability of the GQN network should be expanded so that it is as capable as the original implementation. The data generation process and preprocessing are capable of supplying such an implementation with the required data. This means that only the architecture of the model needs to be updated. Updating the network in this would would enable the development of the prototypes in the following subsections.
 
 
-\subparagraph{Rendering nonstatic objects}
+\subsection{Rendering nonstatic objects}
 After the update the network would be able to directly render nonstatic objects. To capture the movement of objects, each frame a new observation from all observation points needs to be send to the encoder to update the environment representation, that is then used to render the output. Updating the representation each frame means that the output of the network would always represent where objects are in the environment at the present time.
 
 
+\newpage
 \subsection{Interactive environment modeling}\label{PlayerEnvironmentModeling}
 In this prototype the player manually updates the inputs to the GQN. For this he places some object in the environment, where the observations should be taken. To create more gameplay depth, the number of possible observations that can be taken per level and the total number of active observations should be limited in some way. This forces the player to strategize about when and where to take observations. Placing observations at a position would make the output of the network more accurate in the region the capturing object points in.
