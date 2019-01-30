@@ -4,7 +4,7 @@
  In this Prototype the player has to navigate though a maze. All static objects in the environment are rendered with a neural network. The player has to use the output of the neural network to navigate through it. There are several enemy types that have to be avoided or destroyed. Multiple checkpoints have to be collected before the goal is unlocked. By collecting the goal the player wins the level.
 
 \section{Audio}
-In this project I use the Resonance Audio plug-in to simulate spatial sound. This facilitates player orientation. All important objects and events such as enemies and checkpoints emit a unique sound, that helps to spatially locate and identify them. A doppler effect is used on all audiosources, so that the player perceives how entities are moving relative to him.
+In this project I use the Resonance Audio plug-in to simulate spatial sound. This facilitates player orientation. All important objects and events such as enemies and checkpoints emit a unique sound, that helps to spatially locate and identify them. A Doppler effect is used on all audio sources, so that the player perceives how entities are moving relative to him.
 
 
 \section{Sound spectrum analyzing materials}
@@ -27,7 +27,7 @@ To beat a level the player has to collect all checkpoints. They are visualized a
   \centering
   \includegraphics[width=\imgWidth]{images/game_systems/GoalDim.png} \\[\picVdist]
   \includegraphics[width=\imgWidth]{images/game_systems/GoalBright.png}
-  \caption{Checkpoint cuboid varying material color based on the current sound}
+  \caption{Goal varies its material color based on the current sound}
   \label{GoalBlinks}
   \figsource{own graphic}
 \end{figure}
@@ -38,12 +38,12 @@ Enemies in this prototype all follow a simple pattern. They spawn out of a for t
 
 
 \subsection{Speeder}
-\Cref{Speeder} shows the simplest enemy, the speeder. He moves forward with a constant velocity. This enemy emits a two sounds. One can only be heard by the player if the enemy is moving directly at him. A variation of the speeder exists that moves way faster and looks different (\cref{FastSpeeder}). Because of the doppler effect applied to the audio sources, the sound emmitted feels more dangerous. This is probably because with the doppler sound you also hear that it goes really fast.
+\Cref{Speeder} shows the simplest enemy, the speeder. He moves forward with a constant velocity. This enemy emits a two sounds. One can only be heard by the player if the enemy is moving directly at him. A variation of the speeder exists that moves way faster and looks different (\cref{FastSpeeder}). Because of the Doppler effect applied to the audio sources, the sound emitted feels more dangerous. This is probably because with the Doppler sound you also hear that it goes really fast.
 
 \begin{figure}[p]
   \centering
   \includegraphics[width=\imgWidth]{images/game_systems/SpeederSpawns.png}
-  \caption{Speder moves away from his pink spawn point}
+  \caption{Speeder moves away from his pink spawn point}
   \label{Speeder}
   \figsource{own graphic}
 \end{figure}
@@ -92,7 +92,7 @@ The player has a laser that he can shoot to destroy enemies. Ammunition is limit
   \includegraphics[height=0.3\textheight, width=0.42\textheight]{images/game_systems/Shoot1.png} \\[\picVdist]
   \includegraphics[height=0.3\textheight, width=0.42\textheight]{images/game_systems/Shoot2.png} \\[\picVdist]
   \includegraphics[height=0.3\textheight, width=0.42\textheight]{images/game_systems/Shoot3.png}
-  \caption{Player destroys an enemy with the laser}
+  \caption{The player destroys an enemy with the laser.}
   \label{DestroyEnemy}
   \figsource{own graphic}
 \end{figure}
@@ -105,7 +105,7 @@ Smoke emitting  balls can be thrown by the player. As shown in \cref{SmokeInEnvi
   \centering
   \includegraphics[width=\imgWidth]{images/game_systems/NoSmoke.png} \\[\picVdist]
   \includegraphics[width=\imgWidth]{images/game_systems/ThrowSmoke.png}
-  \caption{The player reveals where the walls are in the unity environment with smoke.}
+  \caption{The player reveals where the walls are in the unity environment using smoke.}
   \label{SmokeInEnvironment}
   \figsource{own graphic}
 \end{figure}
@@ -114,7 +114,7 @@ Smoke emitting  balls can be thrown by the player. As shown in \cref{SmokeInEnvi
   \centering
   \includegraphics[width=\imgWidth]{images/game_systems/ChamperNoSmoke.png} \\[\picVdist]
   \includegraphics[width=\imgWidth]{images/game_systems/ChamperInSmoke.png}
-  \caption{The player reveals a champer with smoke.}
+  \caption{The player reveals a champer using smoke.}
   \label{UncoverChamper}
   \figsource{own graphic}
 \end{figure}
