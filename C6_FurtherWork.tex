@@ -10,7 +10,7 @@ One additional layer of interactivity could be created by giving the player cont
 This could be used to create a competitive multiplayer game where both players first have to train a network and then use the output of their trained network to beat the other player at some task that has to be performed in the environment such as collecting objects, catching the other player or shooting the other player.
 
 
-\section{Blending of internal network state}
+\section{Network state blending}
 One way to make the output of the neural network more interesting is by parameterizing the internal learned parameters. During training they would not have be variable, but after training the parameters can be manipulated to morph the output of the neural network. This morphing might be dependent on some dynamic gameplay values i.e. if the player shoots the laser the morphing could be set to height value and then gradually lerp back.
 
 

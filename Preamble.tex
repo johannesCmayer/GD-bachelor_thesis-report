@@ -6,6 +6,7 @@
 
 \input{Lib1_Graphs}
 
+\usepackage{float}
 \usepackage{fancyhdr}
 \usepackage{color}
 \usepackage{afterpage}
@@ -16,7 +17,7 @@
 \usepackage{titlesec}
 \usepackage{fp}
 
-\def\bleed{0}
+\def\bleed{5}
 \FPeval{\xSize}{210 + \bleed}
 \FPeval{\ySize}{297 + \bleed}
 \FPeval{\xOffset}{\bleed / 2}
@@ -24,10 +25,10 @@
 
 \usepackage[
 	margin=5cm,
-	% papersize={\xSize mm, \ySize mm},% {210mm, 297mm} = A4
-	% layout=a4paper,
-  % layouthoffset=\xOffset mm,
-  % layoutvoffset=\yOffset mm,
+	papersize={\xSize mm, \ySize mm},% {210mm, 297mm} = A4
+	layout=a4paper,
+  layouthoffset=\xOffset mm,
+  layoutvoffset=\yOffset mm,
     % showframe
 ]{geometry}
 \usepackage{makecell}
@@ -105,3 +106,6 @@
 \newcommand{\imgWidth}{0.95\textwidth}
 \newcommand{\imgHeight}{0.95\textwidth}
 \newcommand{\imgWithTripple}{0.29\textheight}
+
+%\newcommand{\includecovers}{0}
+\newcommand{\includePrePosBlankPages}{0}

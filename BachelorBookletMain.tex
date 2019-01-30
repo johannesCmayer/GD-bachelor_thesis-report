@@ -4,6 +4,12 @@
 
 \begin{document}
 
+\ifdefined\includePrePosBlankPages
+\blankpage
+\fi
+
+\ifdefined\includecovers
+
 \begin{titlepage}
 \begin{tikzpicture}[remember picture,overlay]
 	\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth, height=\paperheight]{images/cover/FrontCover.png}};
@@ -14,9 +20,9 @@
 \end{tikzpicture}
 \end{titlepage}
 
-
 \blankpage
 
+\fi
 
 \pagenumbering{Roman}
 \begin{flushleft}
@@ -98,15 +104,25 @@ I hereby declare that I am the sole author of this bachelor thesis and that I ha
 \includegraphics[width=0.2\textwidth]{Images/logos/logo_GD_black.jpg} \hspace*{\fill}
 \includegraphics[width=0.2\textwidth]{Images/logos/logo_htw.jpg}
 
+\ifdefined\includePrePosBlankPages
+\clearpage
+\null
+\fi
 
+\ifdefined\includecovers
 
-%\newpage
-\blankpage
-\blankpage
-\blankpage
+\clearpage
+\null
+\newpage
+\clearpage
+\clearpage
 
+\begin{figure}[H]
 \begin{tikzpicture}[remember picture,overlay]
 \node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth, height=\paperheight]{Images/cover/BackCover.png}};
 \end{tikzpicture}
+\end{figure}
+
+\fi
 
 \end{document}
